@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load update_value %}
+
+{% block static %}
+    <link rel="stylesheet" href="{% static "css/document-page2.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "css/finance.css" %}" type="text/css">
+{% endblock %}
+
+{% block title %}
+Державне фінансування {{ finance.year}}
+{% endblock %}
+
+{% block content %}
+    <div class="title"><p>Фінанси прозоро</p></div>
+    <!-- Тут также жесть -->
+    <div class="finance-container">
+        <div class="slider-container slider">
+            {% for finance_year in Finance %}
+                {% if finance_year.year|stringformat:"s" ==  finance.year|stringformat:"s"%}
+                <a href=""><div class="choice-year">
+                {% else %}
+                <a href="{% url 'finance-details' finance_year.year%}"><div class="year">
+                {% endif %}
+                <p>{{ finance_year.year}} рік</p></div></a>
+            {% endfor %}
+        </div>
+
+        {% if finance.koshtorys %}
+            <div class="title-document"><p>Кошторис</p></div>
+            <div class="document-phone"><a href="../media/{{ finance.koshtorys }}" download>Завантажити документ<img SRC="/static/img/pdf.svg"></a></div>
+            <div class="document">
+                <embed src="../media/{{ finance.koshtorys }}" type="application/pdf" width="55%" height="1000"/>
+            </div>
+        {% endif %}
+
+        {% if FinanceFiles %}
+            {% with True as flag%}
+            {% for financ_zvit in FinanceFiles %}
+                {% if financ_zvit.Finance.year|stringformat:"s" == finance.year|stringformat:"s"%}
+                    {% if flag %}
+                        <div class="title-document">
+                            <p>Інформація щодо</p>
+                            <div class="phone-sub-title"><p style="font-size: 20px;line-height: 24px;">придбаних товарів, виконаних робіт, послуг за рахунок загального бюджету </p></div>
+                        </div>
+
+                        {% update_value False as flag %}
+                    {% endif %}
+                    <div class="document-phone"><a href="../media/{{ financ_zvit.financ_zvit }}" download>Завантажити документ<img SRC="/static/img/pdf.svg"></a></div>
+                    <div class="document">
+                        <embed src="../media/{{ financ_zvit.financ_zvit}}" type="application/pdf" width="55%" height="1000"/>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            {% endwith %}
+        {% endif %}
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $('.slider').slick({
+            nextArrow: '<button id="prev" type="button" class="arrow-right"><img src="/static/img/rArrow.png"></button>',
+            prevArrow: '<button id="next" type="button" class="arrow-left"><img src="/static/img/lArrow%20.png"></button>',
+
+            dots: false,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 9,
+            slidesToScroll: 1,
+            //variableWidth: true,
+
+            responsive: [
+                {
+                  breakpoint: 1910,
+                  settings: {
+                      lazyLoad: 'ondemand',
+                      slidesToShow: 9,
+                      slidesToScroll: 1,
+                  }
+                },
+                {
+                  breakpoint: 1365,
+                  settings: {
+                      lazyLoad: 'ondemand',
+                      slidesToShow: 7,
+                      slidesToScroll: 1,
+                  }
+                },
+                {
+                  breakpoint: 1025,
+                  settings: {
+                      lazyLoad: 'ondemand',
+                      slidesToShow: 3,
+                      slidesToScroll: 1,
+                  }
+                },
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+          ]
+        });
+    </script>
+
+{% endblock %}
+

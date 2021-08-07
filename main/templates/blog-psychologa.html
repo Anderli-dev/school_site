@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block static %}
+    <link rel="stylesheet" href="{% static "css/blog-psychologa1.css" %}" type="text/css">
+{% endblock %}
+
+{% block title %}
+Блог психолога
+{% endblock %}
+
+{% block content %}
+    <div class="title"><p>Блог психолога</p></div>
+    {% for post in object_list %}
+        {% if post.author|stringformat:"s" == "Психолог" %}
+            <div class="news">
+                <div class="img-box"><a href="{% url 'post-psychologa' post.slug%}"><img class="img" src="/media/img/{{ post.img }}"></a></div>
+                     <div class="text">
+                         <div style="display: flex; margin-bottom: 15px">
+                             <img src="/static/ico/user.svg" style="width: 35px; margin-right: 10px">
+                             <div class="creator">
+                                 <p>Психолог</p>
+                                 <p>{{ post.post_date }}</p>
+                             </div>
+                         </div>
+                         <a style="text-decoration: none; color: #0E2231" href="{% url 'post-psychologa' post.slug%}">
+                            <h4 class="post-title">{{ post.title }}</h4>
+                            <p>{{ post.short_post }}</p>
+                        </a>
+                     </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

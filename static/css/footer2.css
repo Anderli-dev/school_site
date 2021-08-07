@@ -1,0 +1,182 @@
+.footer-container{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+}
+
+.school-info-footer{
+    padding-bottom: 66px;
+}
+
+.map{
+    overflow:hidden;
+    padding-bottom:25%;
+    position:relative;
+    height:100%;
+    width: 80%;
+    float: right;
+    margin-top: -125px;
+    margin-right: 100px;
+}
+
+.map iframe{
+    padding-left: 370px;
+    left:0;
+    top:0;
+    height: 100%;
+    width: 100%;
+    position:absolute;
+}
+
+.ico-footer{
+    float: left;
+}
+
+.text-footer{
+    padding-left: 70px;
+    text-decoration: none;
+    color: white;
+}
+
+.footer-info{
+    padding-left: 50px;
+    position: absolute;
+    clear: both;
+}
+
+.text-info-title{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    padding-bottom: 34px;
+}
+
+.text-info{
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+    list-style: none;
+}
+
+.text-info li{
+    padding-bottom: 19px;
+}
+
+.text-info a{
+   text-decoration: none;
+}
+
+.text-info p {
+    color: white;
+}
+
+.footer-phone{
+    float: left;
+    width: 23px;
+    background-color: #107B9D;
+    padding: 4px;
+    margin-right: 16px;
+    border-radius: 50%;
+}
+
+.footer-phone:hover {
+    background-color: #42AECF;
+}
+
+.footer-mail{
+    float: left;
+    width: 25px;
+    background-color: #107B9D;
+    padding: 4px;
+    margin-right: 16px;
+    border-radius: 50%;
+}
+
+.footer-mail:hover{
+    background-color: #42AECF;
+}
+
+.rights{
+    background-color: #148BB0;
+    text-align: center;
+    color: white;
+    padding-bottom: 35px;
+}
+
+.to-top{
+    display: none;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    background-color: #42AECF;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.to-top img{
+    margin-left: 17px;
+    margin-top: 13px;
+}
+
+
+@media (max-width: 1024px) {
+    .footer-container{
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 30px;
+    }
+
+    .school-info-footer {
+            padding-bottom: 25px;
+    }
+
+    .text-footer {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+
+        padding-left: 60px;
+    }
+
+    .text-info p{
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .text-info-title{
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .footer-info{
+        position: static;
+        padding-left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-top: 25px;
+    }
+
+    .footer-phone{
+        height: 23px;
+    }
+
+    .map{
+        padding-bottom: 400px;
+        margin-top: 1px;
+        width: 100%;
+        float: none;
+    }
+
+    .map iframe{
+        padding-left: 0px;
+    }
+
+    .to-top {
+        right: 12px;
+        bottom: 12px;
+    }
+}

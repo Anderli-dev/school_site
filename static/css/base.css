@@ -1,0 +1,35 @@
+
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+
+  font-family: 'Exo 2', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  background-size: cover;
+  background: #ffffff;
+  color: #072532;
+}
+
+.content {
+  min-height: calc(100vh - 557px);
+}
+
+.footer {
+  height: 557px;
+  background-color: #148BB0;
+  color: aliceblue;
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    height: 815px;
+  }
+}

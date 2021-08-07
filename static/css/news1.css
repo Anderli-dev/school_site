@@ -1,0 +1,141 @@
+.content{
+    margin: auto;
+    width: 60%;
+    margin-bottom: 40px;
+}
+
+.title{
+    padding-top: 45px;
+    margin-bottom: 109px;
+
+    text-align: center;
+}
+
+.title p{
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 72px;
+    display: inline;
+
+    padding-bottom: 16px;
+    border-bottom: 1px solid #88D9E4;
+}
+
+.img{
+    object-fit: cover;
+    width: 400px;
+    height: 380px;
+}
+
+.news{
+    display: flex;
+    border: 1px solid rgba(204, 204, 204, 0.75);
+
+    margin-top: 40px;
+    padding: 1px;
+}
+
+.post-title{
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 30px;
+
+    margin-bottom: 10px;
+}
+
+.post-title:hover {
+    color: #636886;
+}
+
+.creator{
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.text{
+    padding: 20px;
+    margin-left: 40px;
+}
+
+.text p{
+    text-decoration: none;
+    color: black;
+    font-weight: 300;
+}
+
+.news-block{
+    border: 1px solid rgba(204, 204, 204, 0.75);
+    margin-top: 50px;
+    padding: 50px 50px 50px 50px;
+}
+
+.user-info{
+    margin-bottom: 30px;
+}
+
+.dot{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #2FB3DD;
+    margin-top: 8px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.news-block h3{
+    font-weight: 300;
+    font-size: 38px;
+    line-height: 46px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 1024px) {
+    .content {
+        width: calc(100% - 24px);
+    }
+
+    .title{
+        margin-bottom: 56px;
+        padding-top: 32px;
+    }
+
+    .title p{
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .news{
+        display: block;
+    }
+
+    .img-box{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .text{
+        margin-left: 0;
+    }
+
+    .news-block {
+        margin-top: 32px;
+        padding: 12px;
+    }
+
+    .user-info {
+        margin-bottom: 15px;
+    }
+    .news-block h3{
+        font-weight: 300;
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+}

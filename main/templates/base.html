@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <base href="/">
+    <link rel="icon" href="/static/ico/main-ico-1.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" type="text/css"/>
+
+    <link rel="stylesheet" href="{%static 'css/base.css'%}" type='text/css'>
+    <link rel="stylesheet" href="{%static 'css/nav-bar2.css'%}" type='text/css'>
+    <link rel="stylesheet" href="{%static 'css/footer2.css'%}" type='text/css'>
+    {% block static %}
+    {% endblock %}
+</head>
+<body>
+    <div class="header">
+        <div class="header-burger">
+            <span></span>
+        </div>
+        <a class="ico" href="{% url 'home' %}" type="image/png"><img alt="main ico" width="50px" src="../../static/ico/main-ico%201.svg"/></a>
+        <div class="phone-white-line"></div>
+        <hr class="top-line">
+
+        <div class="nav-bar">
+            <ul>
+                <li><a href="{% url 'join' %}">Вступ до школи</a></li>
+                <li><a href="{% url 'news' %}">Новини</a></li>
+                <li><p>Освітній процес</p>
+                    <div class="sub-nav-bar">
+                        <ul>
+                            <li><a href="{% url 'nash-kolektiv' %}">Наш колектив</a></li>
+                            {% for document in documents %}
+                                {% if document.type|stringformat:'s' == 'Документ освітньго процесу' %}
+                                    <li><a href="{% url 'document-page' document.slug%}">{{ document.name }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            <li><a href="{% url 'blog-psychologa' %}">Блог психолога</a></li>
+                            <li class="hover-me">Протидія булінгу
+                                <div class="sub-sub-nav-bar">
+                                    <ul>
+                                        {% for post in Bullying %}
+                                            <li><a href="{% url 'bullying' post.slug%}">{{ post.title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                            {% if distance_study %}
+                            <li class="hover-me">Дистанційне навчання
+                                <div class="sub-sub-nav-bar">
+                                    <ul>
+                                        {% for post in distance_study %}
+                                            <li><a href="{% url 'document-page' post.slug%}">{{ post.title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </li>
+                <li><p>Документи</p>
+                    <div class="sub-nav-bar">
+                        <ul>
+                            {% for document in documents %}
+                                {% if document.type|stringformat:'s' == 'Звичайний документ'%}
+                                    <li><a href="{% url 'document-page' document.slug%}">{{ document.name }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            <li><a href="{% url 'finance' %}" >Фінанси прозоро</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <div class="phone">
+                <a href="tel:+380503602281"><div style="padding-bottom: 7px; display: flex"><img src="/static/ico/phone.png" alt="" type="image/png"><p>044 411-22-54</p></div></a>
+            </div>
+
+        </div>
+    </div>
+
+    <main class="content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="school-info-footer">
+                <a class="ico-footer" href="{% url 'home' %}"><img alt="main ico" width="50px" src="../../static/ico/main-ico%201.svg"/></a>
+                <p class="text-footer">Навчально-виховний комплекс<br> “Турбота”</p>
+                <p class="text-footer"><a href="https://goo.gl/maps/kNQ3CoktxwLZ9Feh8" class="text-footer" style="padding-left: 0px">Україна, м. Київ, вулиця Героїв Дніпра, 38А</a></p>
+            </div>
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1508.33840138881!2d30.50720421730452!3d50.52091209774817!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4d238b457d5cd%3A0x13382eebf63af676!2z0KjQutC-0LvQsC3QtNC40YLRj9GH0LjQuSDRgdCw0LTQvtC6ICLQotGD0YDQsdC-0YLQsCI!5e0!3m2!1suk!2sua!4v1623352665702!5m2!1suk!2sua" width="600" height="450" style="border:0;" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="footer-info">
+                <div>
+                    <p class="text-info-title">Контактна інформація</p>
+                    <ul class="text-info" >
+                        <li><a href="tel:+380503602281"><p><img class="footer-phone" src="/static/img/phone-footer.png">Приймальня директора
+                            <br>044 298 -11-33</p></a></li>
+                        <li><a href="tel:+380639342291"><p><img class="footer-phone" src="/static/img/phone-footer.png">Приймальна комісія
+                            <br>044 411-22-54</p></a></li>
+                        <li><a href="mailto: obolon_turbota@i.ua"><img class="footer-mail" src="/static/ico/mail.png"><p>obolon_turbota@i.ua</p></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="to-top"><img src="/static/img/arrow-to-top.png"></a>
+
+    </footer>
+    <p class="rights"> © 2021 | All Rights Reserved</p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="/static/js/to-top.js"></script>
+    <script src="/static/js/phone-menu.js"></script>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>
