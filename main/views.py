@@ -32,7 +32,7 @@ class EmployeesView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(EmployeesView, self).get_context_data(**kwargs)
-        context['Employees'] = Employees.objects.all()
+        context['Employees'] = Employees.objects.all().order_by('-id')
         context['Vacancy'] = Vacancy.objects.all()
         context['first-line'] = Employees.objects.all()[0:5]
         return context

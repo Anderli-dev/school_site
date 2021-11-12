@@ -91,8 +91,8 @@ class Finance(models.Model):
     objects = models.Manager()
 
     class Meta:
-        verbose_name = 'Деражавне забезпечення'
-        verbose_name_plural = 'Деражавне забезпечення'
+        verbose_name = 'Державне забезпечення'
+        verbose_name_plural = 'Державне забезпечення'
 
     def save(self, *args, **kwargs):
         self.slug = slugify(str(self.year))
