@@ -1,15 +1,2 @@
 __pychache__/
 *.pyc
-
-settings_key.py
-/.idea
-
-/media/employees_photo/
-/media/img/20055_html_73e82f63.jpg
-/media/img/343855_original.png
-/media/img/увага_D0ZCETs.jpg
-/media/files/
-/media/uploads/2021/
-/db.sqlite3
-/static/ckeditor/
-/venv/
