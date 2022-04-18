@@ -1,3 +1,6 @@
+__pychache__/
+*.pyc
+
 settings_key.py
 /.idea
 
