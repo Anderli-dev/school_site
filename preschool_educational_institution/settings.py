@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # 'django.contrib.staticfiles',
     'ckeditor',
     'ckeditor_uploader',
     'main',
@@ -49,7 +49,7 @@ ROOT_URLCONF = 'preschool_educational_institution.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['../preschool_educational_institution/main/templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'main/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -115,11 +115,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATIC_DIR = os.path.join(BASE_DIR, 'static/')
-STATICFILES_DIRS = [STATIC_DIR]
+# STATIC_DIR = os.path.join(BASE_DIR, 'static/')
+# STATICFILES_DIRS = [STATIC_DIR]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Media settings
 mimetypes.add_type("text/css", ".css", True)
 
 MEDIA_URL = '/media/'
@@ -134,6 +135,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
 
+# CKeditor settings
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',

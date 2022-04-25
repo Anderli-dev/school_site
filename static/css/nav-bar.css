@@ -3,7 +3,7 @@
   position: absolute;
   margin-top: 8px;
   margin-left: 50px;
-  left: 0px;
+  left: 0;
   z-index: 10;
 }
 
@@ -86,7 +86,7 @@
 }
 
 .nav-bar ul li:nth-child(4):hover {
-  border-radius: 0px;
+  border-radius: 0;
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
 }
