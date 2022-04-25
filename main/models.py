@@ -15,6 +15,9 @@ class Document(models.Model):
     name = models.CharField("Назва документа", max_length=100)
     slug = models.SlugField("Посилання", max_length=100, unique=True)
     # заменить CASCADE
+    # TODO something and in admin to
+    # TODO del type
+    # 2 type Документ освітньго процесу, Звичайний документ all in base.html
     type = models.ForeignKey(DocumentType, on_delete=models.CASCADE, verbose_name='Тип документу')
 
     objects = models.Manager()
@@ -57,8 +60,11 @@ class Employees(models.Model):
     name = models.CharField("Ім'я", max_length=50)
     surname = models.CharField("Прізвище", max_length=50)
     po_batkovi = models.CharField("По-батькові", max_length=50)
-    # заменить CASCADE
-    type = models.ForeignKey(EmployeesType, on_delete=models.CASCADE, verbose_name='Тип')
+    # TODO replace CASCADE
+    # TODO something whit type
+    type = models.ForeignKey(EmployeesType,
+                             on_delete=models.CASCADE,
+                             verbose_name='Тип')
     position = models.CharField(verbose_name='Посада', max_length=150)
     photo = models.ImageField("Фотографія", upload_to="employees_photo")
     about = models.TextField("Про співробітника")
@@ -72,6 +78,7 @@ class Employees(models.Model):
 
 
 class Vacancy(models.Model):
+    # TODO add CKeditor to field
     vacancy = models.CharField("Вакансія", max_length=200)
 
     class Meta:
@@ -83,7 +90,7 @@ class Vacancy(models.Model):
 
 
 class Finance(models.Model):
-
+    # TODO in admin with finance
     year = models.IntegerField("Рік")
     koshtorys = models.FileField("Кошторис", upload_to="files", blank=True, null=True)
     slug = models.SlugField(unique=True, default='')
@@ -121,6 +128,7 @@ class BlogPsychologa(models.Model):
 
     title = models.CharField("Назва поста", max_length=255)
     img = models.ImageField(verbose_name="Зображення", upload_to="img")
+    # TODO do something with author
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Автор поста")
     short_post = models.TextField("Короткий опис", blank=True, null=True)
     post_date = models.DateField(auto_now_add=True)
@@ -144,9 +152,12 @@ class BlogPsychologa(models.Model):
 
 class News(models.Model):
 
+    # TODO change verbose name on Заголовок
     title = models.CharField(max_length=255)
     img = models.ImageField(verbose_name="Зображення", upload_to="img")
+    # TODO something with author
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Автор поста")
+    # TODO change name to preview
     short_post = models.TextField("Короткий опис", blank=True, null=True)
     post_date = models.DateField(auto_now_add=True)
     slug = models.SlugField(unique=True, default='')
@@ -168,7 +179,7 @@ class News(models.Model):
 
 
 class Bullying(models.Model):
-
+    # TODO change verbose name
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, default='')
     post = models.TextField("Текст поста")
@@ -189,6 +200,7 @@ class Bullying(models.Model):
 
 
 class DistanceStudy(models.Model):
+    # TODO change verbose name
     title = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     slug = models.SlugField(unique=True, default='')

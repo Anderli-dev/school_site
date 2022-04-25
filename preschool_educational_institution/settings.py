@@ -136,6 +136,7 @@ CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
 
 # CKeditor settings
+# TODO something with upload images
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',

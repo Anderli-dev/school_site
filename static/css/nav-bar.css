@@ -19,7 +19,6 @@
   padding: 4px;
   height: 25px;
 }
-
 .phone a{
   text-decoration: none;
 
@@ -36,10 +35,6 @@
   padding-top: 2px;
 }
 
-.top-line{
-  display: none;
-}
-
 .nav-bar{
   text-align: center;
   background-color: #ffffff;
@@ -47,7 +42,6 @@
   transition: all 0.3s ease 0s;
   z-index: 5;
 }
-
 .nav-bar ul {
   margin-left: 50px;
   margin-right: -136px;
@@ -56,14 +50,20 @@
   list-style: none;
 
 }
-
 .nav-bar ul li {
   padding: 10px;
-  margin: 1.6%;
-
+  list-style-type: none;
+  display: inline-block;
   width: 210px;
 }
-
+.nav-bar ul li:hover {
+  background-color: #35ADD3;
+  color: white;
+}
+.nav-bar ul a {
+  margin: 1.6%;
+  color: inherit;
+}
 .nav-bar ul li a {
   text-decoration: none;
   color: inherit;
@@ -72,20 +72,18 @@
   line-height: 18px;
 }
 
-.active,
-.nav-bar ul li:hover {
-  background-color:   #35ADD3;
-  border-radius: 24px;
-  color: white;
-}
 
-.nav-bar ul li:nth-child(3):hover {
-  border-radius: 0px;
-  border-top-left-radius: 24px;
-  border-top-right-radius: 24px;
-}
 
-.nav-bar ul li:nth-child(4):hover {
+.header-nav{
+    border-radius: 24px;
+}
+.header-wth-sub-nav {
+  margin: 1.6%;
+}
+.header-wth-sub-nav p{
+  width: 163px;
+}
+.header-wth-sub-nav:hover {
   border-radius: 0;
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
@@ -95,7 +93,6 @@
   display: none;
   z-index: 10;
 }
-
 .nav-bar ul li:hover .sub-nav-bar {
   display: block;
   position: absolute;
@@ -105,25 +102,22 @@
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
 }
-
 .nav-bar ul li:hover .sub-nav-bar ul {
   width: 163px;
   display: block;
   margin: 10px;
 
 }
-
 .nav-bar ul li:hover .sub-nav-bar ul li {
+ color: white;
   width: 148px;
   padding: 10px;
   text-align: left;
   z-index: 10;
 }
-
 .nav-bar ul li:hover .sub-nav-bar ul li:hover:last-child {
   border-bottom-right-radius: 0px;
 }
-
 .nav-bar ul li:hover .sub-nav-bar ul li a:hover {
   border-bottom: 1px solid white;
 }
@@ -131,7 +125,6 @@
 .sub-sub-nav-bar{
   display: none;
 }
-
 .hover-me:hover .sub-sub-nav-bar{
   position: absolute;
   display: block;
@@ -140,12 +133,29 @@
   background-color: rgb(102, 198, 255);
   border-radius: 0px 24px 24px 24px;
 }
-
 .hover-me:hover .sub-sub-nav-bar ul li:hover{
   background-color: rgba(255,255,255,0);
 }
 
 @media (max-width: 1024px) {
+  .phone{
+    display: none;
+  }
+  .nav-bar ul{
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .ico{
+    float: none;
+    width: 53px;
+    margin-left: 12px;
+    margin-top: 3px;
+    position: relative;
+    display: block;
+  }
 
   .header-burger{
     display: block;
@@ -167,7 +177,6 @@
     top: 9px;
     transition: all 0.3s ease 0s;
   }
-
   .header-burger:before,
   .header-burger:after{
     content: '';
@@ -177,79 +186,12 @@
     height: 1px;
     transition: all 0.3s ease 0s;
   }
-
   .header-burger:before{
     top: 0;
   }
   .header-burger:after {
     bottom: 0;
   }
-
-  .top-line{
-    display: block;
-    position: relative;
-    border: none;
-    border-bottom: 1px solid #35ADD3;
-    margin-top: 56px;
-    z-index: 50;
-    width: 100%;
-  }
-
-  .nav-bar{
-    position: absolute;
-    width: 100%;
-    top: -443px;
-    height: 500px;
-  }
-
-  .nav-bar ul{
-    flex-direction: column;
-    margin: 0;
-    margin-top: 38px;
-  }
-
-  .nav-bar ul li{
-    display: block;
-    margin: 9px;
-  }
-
-  .nav-bar div.phone{
-    margin-top: 41px;
-    align-items: center;
-    float: none;
-  }
-
-  .nav-bar div.phone:before {
-    content: '';
-    border-top: 1px solid #35ADD3;
-    width: 200px;
-    margin-bottom: 46px;
-  }
-
-  .nav-bar ul li:hover .sub-nav-bar ul {
-    width: 190px;
-  }
-
-  .hover-me:hover .sub-sub-nav-bar{
-    margin-left: 24px;
-    margin-top: 8px;
-  }
-
-  .ico{
-    margin-left: 12px;
-    margin-top: 3px;
-    position: relative;
-    display: block;
-  }
-
-  .phone-white-line{
-    background-color: white;
-    width: calc(100% - 63px + 31px);
-    height: 56px;
-    position: absolute;
-    z-index: 9;
-  }
-
   .header-burger.phone-active:before{
     transform: rotate(45deg);
     top: 9px;
@@ -264,5 +206,40 @@
 
   .nav-bar.phone-active{
     top: 56px;
+  }
+
+  .nav-bar{
+    position: absolute;
+    width: 100%;
+    top: -443px;
+    height: 500px;
+  }
+  .nav-bar ul{
+    flex-direction: column;
+    margin: 0;
+    margin-top: 38px;
+  }
+  .nav-bar ul a{
+    text-decoration: none;
+  }
+  .nav-bar ul li{
+    display: block;
+    margin: 9px;
+  }
+  .nav-bar div.phone{
+    display: none;
+  }
+  .nav-bar ul li:hover .sub-nav-bar ul {
+    width: 190px;
+  }
+
+  .header-wth-sub-nav p{
+    width: initial;
+    margin-left: 5px;
+  }
+
+  .hover-me:hover .sub-sub-nav-bar{
+    margin-left: 24px;
+    margin-top: 8px;
   }
 }
