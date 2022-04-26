@@ -39,24 +39,24 @@
                             <ul>
                                 <li><a href="{% url 'nash-kolektiv' %}">Наш колектив</a></li>
                                 {% for document in documents %}
-                                    {% if document.type|stringformat:'s' == 'Документ освітньго процесу' %}
+                                    {% if document.tab|stringformat:'s' == 'Освітній процес' %}
                                         <li><a href="{% url 'document-page' document.slug%}">{{ document.name }}</a></li>
                                     {% endif %}
                                 {% endfor %}
                                 <li><a href="{% url 'blog-psychologa' %}">Блог психолога</a></li>
-                                <li class="hover-me">Протидія булінгу
-                                    {#TODO show only if exist#}
-                                    <div class="sub-sub-nav-bar">
-                                        <ul>
-                                            {% for post in Bullying %}
-                                                <li><a href="{% url 'bullying' post.slug%}">{{ post.title }}</a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </li>
+                                {% if Bullying %}
+                                    <li class="hover-me">Протидія булінгу
+                                        <div class="sub-sub-nav-bar">
+                                            <ul>
+                                                {% for post in Bullying %}
+                                                    <li><a href="{% url 'bullying' post.slug%}">{{ post.title }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </li>
+                                {% endif %}
                                 {% if distance_study %}
                                     {#TODO create  new page for distance study#}
-                                    {#TODO show only if exist#}
                                     <li class="hover-me">Дистанційне навчання
                                         <div class="sub-sub-nav-bar">
                                             <ul>
@@ -74,7 +74,7 @@
                         <div class="sub-nav-bar">
                             <ul>
                                 {% for document in documents %}
-                                    {% if document.type|stringformat:'s' == 'Звичайний документ'%}
+                                    {% if document.tab|stringformat:'s' == 'Документи'%}
                                         <li><a href="{% url 'document-page' document.slug%}">{{ document.name }}</a></li>
                                     {% endif %}
                                 {% endfor %}

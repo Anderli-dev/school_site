@@ -1,18 +1,8 @@
-from django.contrib import admin
-from .models import (Document,
-                     DocumentFiles,
-                     Employees,
-                     Finance,
-                     FinanceFiles,
-                     BlogPsychologa,
-                     News,
-                     Bullying,
-                     Vacancy,
-                     DistanceStudy,
-                     )
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
+from django.contrib import admin
 
+from .models import *
 
 admin.site.site_title = 'Адміністрування сайту НВК "Турбота"'
 admin.site.site_header = 'Адміністрування сайту НВК "Турбота"'
@@ -20,6 +10,10 @@ admin.site.site_header = 'Адміністрування сайту НВК "Ту
 
 class DocumentFilesAdmin(admin.StackedInline):
     model = DocumentFiles
+    verbose_name = "Документ"
+    verbose_name_plural = "Документи"
+    extra = 0
+    min_num = 1
 
 
 @admin.register(Document)

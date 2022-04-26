@@ -1,4 +1,4 @@
-from .models import Document, DocumentFiles, Bullying, DistanceStudy
+from .models import Document, DocumentFiles, Bullying, DistanceStudy, SiteTab
 
 
 def subject_renderer(request):
@@ -6,5 +6,6 @@ def subject_renderer(request):
        'documents': Document.objects.all(),
        'document_files': DocumentFiles.objects.all(),
        'Bullying': Bullying.objects.all(),
-       'distance_study': DistanceStudy.objects.all()
+       'distance_study': DistanceStudy.objects.all(),
+       'tabs': SiteTab.objects.all()
     }

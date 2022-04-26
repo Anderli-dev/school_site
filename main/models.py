@@ -1,24 +1,28 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+
 from .transliteration_program import slugify
-from django.contrib.auth.models import User
 
 
-class DocumentType(models.Model):
-    name = models.CharField(max_length=100)
+class SiteTab(models.Model):
+    name = models.CharField("Назва вкладки", max_length=100)
+
+    class Meta:
+        verbose_name = "Вкладка"
+        verbose_name_plural = "Вкладки"
 
     def __str__(self):
         return self.name
 
 
 class Document(models.Model):
-    name = models.CharField("Назва документа", max_length=100)
+    name = models.CharField("Назва документа(-ів)", max_length=100)
     slug = models.SlugField("Посилання", max_length=100, unique=True)
-    # заменить CASCADE
-    # TODO something and in admin to
-    # TODO del type
-    # 2 type Документ освітньго процесу, Звичайний документ all in base.html
-    type = models.ForeignKey(DocumentType, on_delete=models.CASCADE, verbose_name='Тип документу')
+    tab = models.ForeignKey(SiteTab,
+                            on_delete=models.SET_DEFAULT,
+                            verbose_name="Вкладка на якій буде знаходитися документ",
+                            default="Документи")
 
     objects = models.Manager()
 
@@ -151,7 +155,7 @@ class BlogPsychologa(models.Model):
 
 
 class News(models.Model):
-
+    # TODO chose page
     # TODO change verbose name on Заголовок
     title = models.CharField(max_length=255)
     img = models.ImageField(verbose_name="Зображення", upload_to="img")
