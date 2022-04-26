@@ -32,9 +32,9 @@ class EmployeesView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(EmployeesView, self).get_context_data(**kwargs)
-        context['Employees'] = Employees.objects.all().order_by('-id')
+        context['Employees'] = Employees.objects.all()
         context['Vacancy'] = Vacancy.objects.all()
-        context['first-line'] = Employees.objects.all()[0:5]
+        context['Count'] = Employees.objects.filter(type=1).count()
         return context
 
 
@@ -52,6 +52,7 @@ class FinanceView(ListView):
 
 class FinanceDetailView(DetailView):
     # тут возможно логика неправильная
+    # TODO look what going on
     model = Finance
     template_name = 'finance-details.html'
 

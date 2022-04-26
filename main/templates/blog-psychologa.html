@@ -15,7 +15,7 @@
     {% for post in object_list %}
         {% if post.author|stringformat:"s" == "Психолог" %}
             <div class="news">
-                <div class="img-box"><a href="{% url 'post-psychologa' post.slug%}"><img class="img" src="/media/img/{{ post.img }}"></a></div>
+                <div class="img-box"><a href="{% url 'post-psychologa' post.slug%}"><img class="img" src="/media/{{ post.img }}"></a></div>
                      <div class="text">
                          <div style="display: flex; margin-bottom: 15px">
                              <img src="/static/ico/user.svg" style="width: 35px; margin-right: 10px">

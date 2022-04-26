@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from ordered_model.models import OrderedModel
 
 from .transliteration_program import slugify
 
@@ -59,31 +60,30 @@ class EmployeesType(models.Model):
         return self.name
 
 
-class Employees(models.Model):
+class Employees(OrderedModel):
 
     name = models.CharField("Ім'я", max_length=50)
     surname = models.CharField("Прізвище", max_length=50)
     po_batkovi = models.CharField("По-батькові", max_length=50)
-    # TODO replace CASCADE
-    # TODO something whit type
     type = models.ForeignKey(EmployeesType,
-                             on_delete=models.CASCADE,
-                             verbose_name='Тип')
-    position = models.CharField(verbose_name='Посада', max_length=150)
+                             on_delete=models.SET_DEFAULT,
+                             verbose_name="Розділ",
+                             default=1)
+    position = models.CharField(verbose_name="Посада", max_length=150)
     photo = models.ImageField("Фотографія", upload_to="employees_photo")
     about = models.TextField("Про співробітника")
 
     class Meta:
         verbose_name = 'Співробітника'
         verbose_name_plural = 'Співробітники'
+        ordering = ("order",)
 
     def __str__(self):
         return self.name+" "+self.surname+" "+self.po_batkovi
 
 
 class Vacancy(models.Model):
-    # TODO add CKeditor to field
-    vacancy = models.CharField("Вакансія", max_length=200)
+    vacancy = models.TextField("Вакансія", max_length=200)
 
     class Meta:
         verbose_name = 'Вакансія'
@@ -94,7 +94,6 @@ class Vacancy(models.Model):
 
 
 class Finance(models.Model):
-    # TODO in admin with finance
     year = models.IntegerField("Рік")
     koshtorys = models.FileField("Кошторис", upload_to="files", blank=True, null=True)
     slug = models.SlugField(unique=True, default='')
@@ -132,8 +131,7 @@ class BlogPsychologa(models.Model):
 
     title = models.CharField("Назва поста", max_length=255)
     img = models.ImageField(verbose_name="Зображення", upload_to="img")
-    # TODO do something with author
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Автор поста")
+    author = models.CharField(default="Психолог", max_length=50)
     short_post = models.TextField("Короткий опис", blank=True, null=True)
     post_date = models.DateField(auto_now_add=True)
     slug = models.SlugField(unique=True, default='')
@@ -159,9 +157,8 @@ class News(models.Model):
     # TODO change verbose name on Заголовок
     title = models.CharField(max_length=255)
     img = models.ImageField(verbose_name="Зображення", upload_to="img")
-    # TODO something with author
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Автор поста")
-    # TODO change name to preview
+    author = models.CharField(default="Адміністратор", max_length=50)
+    # TODO change name to preview and in other ckeditor field
     short_post = models.TextField("Короткий опис", blank=True, null=True)
     post_date = models.DateField(auto_now_add=True)
     slug = models.SlugField(unique=True, default='')

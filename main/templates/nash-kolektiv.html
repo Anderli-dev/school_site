@@ -33,7 +33,7 @@
        <h2 class="sub-title">Вчителі</h2> <img class="title-img title-teacher-img" src="/static/img/teacher.png">
         <div id="invisible" class="employees">
             {% for Teacher in Employees %}
-                {% if Teacher.type|stringformat:'s' == 'Вчитель' %}
+                {% if Teacher.type|stringformat:'s' == 'Вчителі' %}
                     <div class="employees-block">
                         <div class="img"><img style="width: 200px" src="../media/{{ Teacher.photo }}" alt="{{ Teacher.name }} {{ Teacher.surname }}"></div>
                         <div style="margin-top: 40px;">
@@ -45,19 +45,21 @@
                 {% endif %}
             {% endfor %}
         </div>
-        {#TODO remove show more when not enough teachers#}
-        <button id="btn" onclick="readMore()">
-            <div style="display: flex; margin-left: 30px; margin-right: 30px"><p>Дивитись більше</p><img style="margin-left: 14px" src="/static/img/arrow-bottom.png"></div>
-        </button>
-
+        {% if Count >= 6%}
+            <button id="btn" onclick="readMore()">
+                <div style="display: flex; margin-left: 30px; margin-right: 30px"><p>Дивитись більше</p><img style="margin-left: 14px" src="/static/img/arrow-bottom.png"></div>
+            </button>
+        {% endif %}
 
         <div style="margin-bottom: 135px">
             <h2 class="sub-title" style="margin-top: 95px">Вакансії</h2><img class="title-img title-vacancy-img" src="/static/img/day(5).png">
             {% if Vacancy %}
-                <p class="need">НВК « Турбота» потрібні:</p>
-                {% for vacancy in Vacancy %}
-                    <p class="vacancy">— {{ vacancy.vacancy }}</p>
-                {% endfor %}
+                <div style="margin-top: -35px">
+                    <p class="need">НВК « Турбота» потрібні:</p>
+                    {% for vacancy in Vacancy %}
+                        <p class="vacancy">— {{ vacancy.vacancy }}</p>
+                    {% endfor %}
+                </div>
             {% endif %}
         </div>
 
