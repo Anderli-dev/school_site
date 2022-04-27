@@ -1,7 +1,7 @@
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
-from .models import Employees, BlogPsychologa, Bullying, DistanceStudy, News
+from .models import Employees, BlogPsychologa, Bullying, InfoPage, News
 
 
 # need to be optimized, but HOW?
@@ -37,9 +37,9 @@ class BullyingForm(forms.ModelForm):
         fields = '__all__'
 
 
-class DistanceStudyForm(forms.ModelForm):
+class InfoPageForm(forms.ModelForm):
     post = forms.CharField(label="Текст поста", widget=CKEditorUploadingWidget())
 
     class Meta:
-        model = DistanceStudy
+        model = InfoPage
         fields = '__all__'

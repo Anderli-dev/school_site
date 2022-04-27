@@ -9,8 +9,9 @@ from main.views import (DocumentPageView,
                         NewsView,
                         NewsDetailView,
                         BullyingView,
+                        BullyingDetailView,
                         JoinUsView,
-                        DistanceStudyView,
+                        InfoPageView,
                         )
 
 urlpatterns = [
@@ -22,8 +23,9 @@ urlpatterns = [
     path('finance', FinanceView.as_view(), name='finance'),
     path('finance/<slug:slug>', FinanceDetailView.as_view(), name='finance-details'),
     path('document/<slug:slug>', DocumentPageView.as_view(), name='document-page'),
-    path('distance-study/<slug:slug>', DistanceStudyView.as_view(), name='distance-study'),
     path('blog-psychologa', BlogPsychologaView.as_view(), name='blog-psychologa'),
     path('blog-psychologa/<slug:slug>', BlogPsychologaDetailView.as_view(), name='post-psychologa'),
-    path('protidiya-bulingu/<slug:slug>', BullyingView.as_view(), name='bullying')
+    path('protidiya-bulingu', BullyingView.as_view(), name='bullying'),
+    path('protidiya-bulingu/<slug:slug>', BullyingDetailView.as_view(), name='bullying-detail'),
+    path('<slug:slug>', InfoPageView.as_view(), name='info-page'),
 ]

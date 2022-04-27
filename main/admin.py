@@ -57,13 +57,13 @@ class NewsAdmin(admin.ModelAdmin):
 @admin.register(Bullying)
 class BullyingAdmin(admin.ModelAdmin):
     form = BullyingForm
-    exclude = ["slug"]
+    exclude = ["slug", "author"]
 
 
 admin.site.register(Vacancy)
 
 
-@admin.register(DistanceStudy)
+@admin.register(InfoPage)
 class BullyingAdmin(admin.ModelAdmin):
-    form = DistanceStudyForm
+    form = InfoPageForm
     exclude = ["slug"]

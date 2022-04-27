@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block static %}
-    <link rel="stylesheet" href="{% static "css/news.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "css/blog-psychologa.css" %}" type="text/css">
 {% endblock %}
 
 {% block title %}
@@ -12,30 +12,21 @@
 
 {% block content %}
     <div class="news-block">
-        <div class="user-info" style="display: flex;">
+        <div style="display: flex; margin-bottom: 30px">
             <img style="height: 35px; margin-right: 10px" src="/static/ico/user.svg">
             <div style="display:flex; padding-top: 8px"><p>Адміністрація</p><div class="dot"></div><p>{{ object.post_date }}</p></div>
         </div>
         <h3>{{ object.title }}</h3>
-        <div class="post">
-            {{ object.post|safe }}
-        </div>
+        <div>{{ object.post|safe }}</div>
     </div>
 
     <script>
-        if(window.innerWidth < 1024) {
-          let postImg = document.querySelectorAll("div.post img");
-          for (let i = 0; i<postImg.length; i++){
-              postImg[i].style.width = '100%';
-              postImg[i].style.height = '100%';
-          }
-        }
         let p = document.createElement('p');
         if(window.innerWidth < 1024) {
           let postIframe = document.querySelectorAll("div.news-block iframe");
           for (let i = 0; i<postIframe.length; i++){
               postIframe[i].style.display = 'none';
-              p.innerHTML = '<div class="document-phone"><a href="'+ postIframe[i].src +'" download>Завантажити документ</a></div>';
+              p.innerHTML = '<div class="document-phone"><a href="'+ postIframe[i].src +'" download>Завантажити документ<img SRC="/static/img/pdf.svg"></a></div>';
               postIframe[i].insertAdjacentHTML('afterend', p.innerHTML);
 
               console.log(postIframe[i].src)

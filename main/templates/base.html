@@ -38,6 +38,11 @@
                         <div class="sub-nav-bar">
                             <ul>
                                 <li><a href="{% url 'nash-kolektiv' %}">Наш колектив</a></li>
+                                {% for page in Pages %}
+                                    {% if page.tab|stringformat:'s' == 'Освітній процес' %}
+                                        <li><a href="{% url 'info-page' page.slug%}">{{ page.title }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
                                 {% for document in documents %}
                                     {% if document.tab|stringformat:'s' == 'Освітній процес' %}
                                         <li><a href="{% url 'document-page' document.slug%}">{{ document.name }}</a></li>
@@ -45,27 +50,7 @@
                                 {% endfor %}
                                 <li><a href="{% url 'blog-psychologa' %}">Блог психолога</a></li>
                                 {% if Bullying %}
-                                    <li class="hover-me">Протидія булінгу
-                                        <div class="sub-sub-nav-bar">
-                                            <ul>
-                                                {% for post in Bullying %}
-                                                    <li><a href="{% url 'bullying' post.slug%}">{{ post.title }}</a></li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
-                                    </li>
-                                {% endif %}
-                                {% if distance_study %}
-                                    {#TODO create  new page for distance study#}
-                                    <li class="hover-me">Дистанційне навчання
-                                        <div class="sub-sub-nav-bar">
-                                            <ul>
-                                                {% for post in distance_study %}
-                                                    <li><a href="{% url 'distance-study' post.slug%}">{{ post.title }}</a></li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
-                                    </li>
+                                    <li><a href="{% url 'bullying' %}">Протидія булінгу</a></li>
                                 {% endif %}
                             </ul>
                         </div>
@@ -73,6 +58,11 @@
                     <li class="header-wth-sub-nav"><p>Документи</p>
                         <div class="sub-nav-bar">
                             <ul>
+                                {% for page in Pages %}
+                                    {% if page.tab|stringformat:'s' == 'Документи' %}
+                                        <li><a href="{% url 'info-page' page.slug%}">{{ page.title }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
                                 {% for document in documents %}
                                     {% if document.tab|stringformat:'s' == 'Документи'%}
                                         <li><a href="{% url 'document-page' document.slug%}">{{ document.name }}</a></li>
@@ -82,10 +72,25 @@
                             </ul>
                         </div>
                     </li>
+                    {% if Pages or documents %}
+                        <li class="header-wth-sub-nav"><p><nobr>Дистанційне навчання</nobr></p>
+                            <div class="sub-nav-bar">
+                                <ul>
+                                    {% for page in Pages %}
+                                        {% if page.tab|stringformat:'s' == 'Дистанційне навчання' %}
+                                            <li><a href="{% url 'info-page' page.slug%}">{{ page.title }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% for document in documents %}
+                                        {% if document.tab|stringformat:'s' == 'Дистанційне навчання'%}
+                                            <li><a href="{% url 'document-page' document.slug%}">{{ document.name }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </li>
+                    {% endif %}
                 </ul>
-                <div class="phone">
-                    <a href="tel:+380503602281"><div style="padding-bottom: 7px; display: flex"><img src="/static/ico/phone.png" alt="" type="image/png"><p>044 411-22-54</p></div></a>
-                </div>
             </div>
         </div>
     </div>
@@ -96,7 +101,6 @@
     </main>
 
     <footer class="footer">
-        {#TODO add link to admin panel#}
         <div class="footer-container">
             <div class="school-info-footer">
                 <a class="ico-footer" href="{% url 'home' %}"><img alt="main ico" width="50px" src="../../static/ico/main-ico%201.svg"/></a>
@@ -109,13 +113,13 @@
             <div class="footer-info">
                 <div>
                     <p class="text-info-title">Контактна інформація</p>
-                    {#TODO when focus in number change color all line#}
                     <ul class="text-info" >
-                        <li><a href="tel:+380503602281"><p><img class="footer-phone" src="/static/img/phone-footer.png">Приймальня директора
+                        <li><a href="tel:0442981133"><p><img class="footer-phone" src="/static/img/phone-footer.png">Приймальня директора
                             <br>044 298 -11-33</p></a></li>
-                        <li><a href="tel:+380639342291"><p><img class="footer-phone" src="/static/img/phone-footer.png">Приймальна комісія
+                        <li><a href="tel:0444112254"><p><img class="footer-phone" src="/static/img/phone-footer.png">Приймальна комісія
                             <br>044 411-22-54</p></a></li>
                         <li><a href="mailto: obolon_turbota@i.ua"><img class="footer-mail" src="/static/ico/mail.png"><p>obolon_turbota@i.ua</p></a></li>
+                        <li class="to-admin"><a href="/admin"><div><img src="/static/img/login-128.ico"></div><p>Увійти</p></a></li>
                     </ul>
                 </div>
             </div>

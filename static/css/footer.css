@@ -79,10 +79,6 @@
     border-radius: 50%;
 }
 
-.footer-phone:hover {
-    background-color: #42AECF;
-}
-
 .footer-mail{
     float: left;
     width: 25px;
@@ -92,7 +88,7 @@
     border-radius: 50%;
 }
 
-.footer-mail:hover{
+.text-info li a:hover img{
     background-color: #42AECF;
 }
 
@@ -120,6 +116,39 @@
     margin-top: 13px;
 }
 
+.to-admin a{
+    text-decoration: none;
+    color: white
+}
+
+.to-admin a:hover {
+    text-decoration: underline white;
+}
+
+.to-admin a div{
+    display: inline-grid;
+    width: 25px;
+    height: 25px;
+    background-color: #107B9D;
+    padding: 4px;
+    padding-top: 5px;
+    margin-right: 16px;
+    border-radius: 50%;
+}
+
+.to-admin a:hover div {
+    background-color: #42AECF;
+}
+
+.to-admin a p{
+    display: table-caption;
+    margin-top: -17px;
+}
+
+.to-admin a img {
+    float: left;
+    width: 15px;
+}
 
 @media (max-width: 1024px) {
     .footer-container{

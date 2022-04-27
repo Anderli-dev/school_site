@@ -8,7 +8,7 @@ from .models import (Document,
                      BlogPsychologa,
                      News,
                      Bullying,
-                     DistanceStudy,
+                     InfoPage,
                      )
 
 
@@ -39,7 +39,7 @@ class EmployeesView(ListView):
 
 
 class FinanceView(ListView):
-
+    # TODO what going on
     model = Finance
     template_name = 'finance.html'
     ordering = ['-id']
@@ -89,13 +89,19 @@ class NewsDetailView(DetailView):
     template_name = 'news-detail.html'
 
 
-class BullyingView(DetailView):
+class BullyingView(ListView):
+    model = Bullying
+    template_name = 'bullying.html'
+    ordering = ['-id']
+
+
+class BullyingDetailView(DetailView):
 
     model = Bullying
-    template_name = 'bullying-page.html'
+    template_name = 'bullying-detail.html'
 
 
-class DistanceStudyView(DetailView):
+class InfoPageView(DetailView):
 
-    model = DistanceStudy
-    template_name = 'distance-study.html'
+    model = InfoPage
+    template_name = 'info-page.html'

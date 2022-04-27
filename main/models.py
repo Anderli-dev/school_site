@@ -5,6 +5,8 @@ from ordered_model.models import OrderedModel
 
 from .transliteration_program import slugify
 
+# TODO add ordering to other model
+
 
 class SiteTab(models.Model):
     name = models.CharField("Назва вкладки", max_length=100)
@@ -22,7 +24,7 @@ class Document(models.Model):
     slug = models.SlugField("Посилання", max_length=100, unique=True)
     tab = models.ForeignKey(SiteTab,
                             on_delete=models.SET_DEFAULT,
-                            verbose_name="Вкладка на якій буде знаходитися документ",
+                            verbose_name="Вкладка на якій буде знаходитися документ(-и)",
                             default="Документи")
 
     objects = models.Manager()
@@ -129,10 +131,10 @@ class FinanceFiles(models.Model):
 
 class BlogPsychologa(models.Model):
 
-    title = models.CharField("Назва поста", max_length=255)
+    title = models.CharField("Заголовок", max_length=255)
     img = models.ImageField(verbose_name="Зображення", upload_to="img")
     author = models.CharField(default="Психолог", max_length=50)
-    short_post = models.TextField("Короткий опис", blank=True, null=True)
+    short_post = models.TextField("Прев’ю", blank=True, null=True)
     post_date = models.DateField(auto_now_add=True)
     slug = models.SlugField(unique=True, default='')
     post = models.TextField("Текст поста")
@@ -152,14 +154,35 @@ class BlogPsychologa(models.Model):
         return self.title
 
 
-class News(models.Model):
-    # TODO chose page
-    # TODO change verbose name on Заголовок
-    title = models.CharField(max_length=255)
+class Bullying(models.Model):
+    title = models.CharField("Заголовок", max_length=255)
     img = models.ImageField(verbose_name="Зображення", upload_to="img")
     author = models.CharField(default="Адміністратор", max_length=50)
-    # TODO change name to preview and in other ckeditor field
-    short_post = models.TextField("Короткий опис", blank=True, null=True)
+    short_post = models.TextField("Прев’ю", blank=True, null=True)
+    post_date = models.DateField(auto_now_add=True)
+    slug = models.SlugField(unique=True, default='')
+    post = models.TextField("Текст поста")
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('protidiya-bulingu', kwargs={'slug': self.slug})
+
+    class Meta:
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Протидія булінгу'
+
+    def __str__(self):
+        return self.title
+
+
+class News(models.Model):
+    title = models.CharField("Заголовок", max_length=255)
+    img = models.ImageField(verbose_name="Зображення", upload_to="img")
+    author = models.CharField(default="Адміністратор", max_length=50)
+    short_post = models.TextField("Прев’ю", blank=True, null=True)
     post_date = models.DateField(auto_now_add=True)
     slug = models.SlugField(unique=True, default='')
     post = models.TextField("Текст поста")
@@ -179,44 +202,26 @@ class News(models.Model):
         return self.title
 
 
-class Bullying(models.Model):
-    # TODO change verbose name
-    title = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True, default='')
-    post = models.TextField("Текст поста")
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        return reverse('news-detail', kwargs={'slug': self.slug})
-
-    class Meta:
-        verbose_name = 'Пост'
-        verbose_name_plural = 'Протидія булінгу'
-
-    def __str__(self):
-        return self.title
-
-
-class DistanceStudy(models.Model):
-    # TODO change verbose name
-    title = models.CharField(max_length=255)
+class InfoPage(models.Model):
+    title = models.CharField("Заголовок", max_length=255)
     post_date = models.DateField(auto_now_add=True)
     slug = models.SlugField(unique=True, default='')
-    post = models.TextField("Текст поста")
+    tab = models.ForeignKey(SiteTab,
+                            on_delete=models.SET_DEFAULT,
+                            verbose_name="Вкладка на якій буде сторінка",
+                            default="Документи")
+    post = models.TextField("Текст")
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('news-detail', kwargs={'slug': self.slug})
+        return reverse('', kwargs={'slug': self.slug})
 
     class Meta:
-        verbose_name = 'Пост'
-        verbose_name_plural = 'Дистанційне навчання'
+        verbose_name = 'Сторінку'
+        verbose_name_plural = 'Сторінки'
 
     def __str__(self):
         return self.title

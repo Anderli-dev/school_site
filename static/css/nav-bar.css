@@ -43,8 +43,6 @@
   z-index: 5;
 }
 .nav-bar ul {
-  margin-left: 50px;
-  margin-right: -136px;
   text-align: center;
   display: inline-flex;
   list-style: none;
@@ -138,16 +136,6 @@
 }
 
 @media (max-width: 1024px) {
-  .phone{
-    display: none;
-  }
-  .nav-bar ul{
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
-
-@media (max-width: 768px) {
   .ico{
     float: none;
     width: 53px;
