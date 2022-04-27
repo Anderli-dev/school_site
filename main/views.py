@@ -1,5 +1,8 @@
+from itertools import chain
+
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+
 from .models import (Document,
                      Employees,
                      Vacancy,
@@ -13,7 +16,11 @@ from .models import (Document,
 
 
 def index(request):
-    return render(request, 'index.html')
+    employees = Employees.objects.filter(type=2)[:3]
+    if employees.count() <= 3:
+        employees = list(chain(employees, Employees.objects.filter(type=1)[:4-employees.count()]))
+
+    return render(request, 'index.html', context={"employees": employees})
 
 
 class JoinUsView(ListView):

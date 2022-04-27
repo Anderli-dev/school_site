@@ -1,7 +1,7 @@
 .ico{
   float: left;
   position: absolute;
-  margin-top: 8px;
+  margin-top: 0.6%;
   margin-left: 50px;
   left: 0;
   z-index: 10;
@@ -59,7 +59,7 @@
   color: white;
 }
 .nav-bar ul a {
-  margin: 1.6%;
+  margin: 1.2%;
   color: inherit;
 }
 .nav-bar ul li a {
@@ -76,7 +76,7 @@
     border-radius: 24px;
 }
 .header-wth-sub-nav {
-  margin: 1.6%;
+  margin: 1.2%;
 }
 .header-wth-sub-nav p{
   width: 163px;
@@ -114,7 +114,7 @@
   z-index: 10;
 }
 .nav-bar ul li:hover .sub-nav-bar ul li:hover:last-child {
-  border-bottom-right-radius: 0px;
+  border-bottom-right-radius: 0;
 }
 .nav-bar ul li:hover .sub-nav-bar ul li a:hover {
   border-bottom: 1px solid white;
@@ -129,7 +129,7 @@
   margin-top: -40px;
   margin-left: 135px;
   background-color: rgb(102, 198, 255);
-  border-radius: 0px 24px 24px 24px;
+  border-radius: 0 24px 24px 24px;
 }
 .hover-me:hover .sub-sub-nav-bar ul li:hover{
   background-color: rgba(255,255,255,0);
