@@ -1,4 +1,5 @@
 from itertools import chain
+from datetime import datetime
 
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
@@ -46,69 +47,62 @@ class EmployeesView(ListView):
 
 
 class FinanceView(ListView):
-    # TODO what going on
     model = Finance
     template_name = 'finance.html'
-    ordering = ['-id']
 
     def get_context_data(self, **kwargs):
         context = super(FinanceView, self).get_context_data(**kwargs)
-        context['FinanceFiles'] = FinanceFiles.objects.all()
+        context['FinanceZvit'] = FinanceFiles.objects.get(Finance=Finance.objects.get(year=datetime.now().year))
         return context
 
 
 class FinanceDetailView(DetailView):
-    # тут возможно логика неправильная
-    # TODO look what going on
     model = Finance
     template_name = 'finance-details.html'
 
     def get_context_data(self, **kwargs):
         context = super(FinanceDetailView, self).get_context_data(**kwargs)
-        context['FinanceFiles'] = FinanceFiles.objects.all()
-        context['Finance'] = Finance.objects.order_by('-id')
+        context['FinanceZvit'] = FinanceFiles.objects.get(Finance=self.object)
+        context['FinancesYear'] = Finance.objects.only("year")
         return context
 
 
 class BlogPsychologaView(ListView):
-
+    paginate_by = 10
     model = BlogPsychologa
     template_name = 'blog-psychologa.html'
     ordering = ['-id']
 
 
 class BlogPsychologaDetailView(DetailView):
-
     model = BlogPsychologa
     template_name = 'post-psychologa.html'
 
 
 class NewsView(ListView):
-
+    paginate_by = 10
     model = News
     template_name = 'news.html'
     ordering = ['-id']
 
 
 class NewsDetailView(DetailView):
-
     model = News
     template_name = 'news-detail.html'
 
 
 class BullyingView(ListView):
+    paginate_by = 10
     model = Bullying
     template_name = 'bullying.html'
     ordering = ['-id']
 
 
 class BullyingDetailView(DetailView):
-
     model = Bullying
     template_name = 'bullying-detail.html'
 
 
 class InfoPageView(DetailView):
-
     model = InfoPage
     template_name = 'info-page.html'

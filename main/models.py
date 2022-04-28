@@ -5,8 +5,6 @@ from ordered_model.models import OrderedModel
 
 from .transliteration_program import slugify
 
-# TODO add ordering to other model
-
 
 class SiteTab(models.Model):
     name = models.CharField("Назва вкладки", max_length=100)
@@ -121,7 +119,7 @@ class FinanceFiles(models.Model):
 
     Finance = models.ForeignKey(Finance, default=None, on_delete=models.CASCADE)
 
-    financ_zvit = models.FileField("PDF-файл", upload_to="files")
+    financ_zvit = models.FileField("PDF-файл", upload_to="files", blank=False)
 
     objects = models.Manager()
 

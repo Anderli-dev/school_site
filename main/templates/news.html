@@ -4,6 +4,7 @@
 
 {% block static %}
     <link rel="stylesheet" href="{% static "css/news.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "css/pagination.css" %}" type="text/css">
 {% endblock %}
 
 {% block title %}
@@ -11,7 +12,6 @@
 {% endblock %}
 
 {% block content %}
-    {#TODO create pagination#}
     <div class="title"><p>Новини</p></div>
     {% for post in object_list %}
         <div class="news">
@@ -31,4 +31,25 @@
             </div>
         </div>
     {% endfor %}
+    {% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="{% url 'news' %}?page={{ page_obj.previous_page_number }}"><li><p>&laquo;</p></li></a>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                    <li class="active"><span>{{ i }}</span></li>
+                {% else %}
+                    <a href="{% url 'news' %}?page={{ i }}"><li><p>{{ i }}</p></li></a>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <a href="{% url 'news' %}?page={{ page_obj.next_page_number }}"><li><p>&raquo;</p></li></a>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
 {% endblock %}

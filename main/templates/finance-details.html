@@ -9,18 +9,16 @@
 {% endblock %}
 
 {% block title %}
-Державне фінансування {{ finance.year}}
+Державне фінансування {{ object.year}}
 {% endblock %}
 
 {% block content %}
     <div class="title"><p>Фінанси прозоро</p></div>
-    {#TODO something#}
-    <!-- Тут также жесть -->
     <div class="finance-container">
         <div class="slider-container slider">
-            {% for finance_year in Finance %}
-                {% if finance_year.year|stringformat:"s" ==  finance.year|stringformat:"s"%}
-                <a href=""><div class="choice-year">
+            {% for finance_year in FinancesYear %}
+                {% if finance_year.year|stringformat:"s" ==  object.year|stringformat:"s"%}
+                <a href="{% url 'finance-details' finance_year.year %}"><div class="choice-year">
                 {% else %}
                 <a href="{% url 'finance-details' finance_year.year%}"><div class="year">
                 {% endif %}
@@ -36,25 +34,15 @@
             </div>
         {% endif %}
 
-        {% if FinanceFiles %}
-            {% with True as flag%}
-            {% for financ_zvit in FinanceFiles %}
-                {% if financ_zvit.Finance.year|stringformat:"s" == finance.year|stringformat:"s"%}
-                    {% if flag %}
-                        <div class="title-document">
-                            <p>Інформація щодо</p>
-                            <div class="phone-sub-title"><p style="font-size: 20px;line-height: 24px;">придбаних товарів, виконаних робіт, послуг за рахунок загального бюджету </p></div>
-                        </div>
-
-                        {% update_value False as flag %}
-                    {% endif %}
-                    <div class="document-phone"><a href="../media/{{ financ_zvit.financ_zvit }}" download>Завантажити документ<img SRC="/static/img/pdf.svg"></a></div>
-                    <div class="document">
-                        <embed src="../media/{{ financ_zvit.financ_zvit}}" type="application/pdf" width="55%" height="1000"/>
-                    </div>
-                {% endif %}
-            {% endfor %}
-            {% endwith %}
+        {% if FinanceZvit %}
+            <div class="title-document">
+                <p>Інформація щодо</p>
+                <div class="phone-sub-title"><p style="font-size: 20px;line-height: 24px;">придбаних товарів, виконаних робіт, послуг за рахунок загального бюджету </p></div>
+            </div>
+            <div class="document-phone"><a href="../media/{{ FinanceZvit.financ_zvit }}" download>Завантажити документ<img SRC="/static/img/pdf.svg"></a></div>
+            <div class="document">
+                <embed src="../media/{{ FinanceZvit.financ_zvit}}" type="application/pdf" width="55%" height="1000"/>
+            </div>
         {% endif %}
     </div>
 

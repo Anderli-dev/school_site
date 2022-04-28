@@ -4,10 +4,11 @@
 
 {% block static %}
     <link rel="stylesheet" href="{% static "css/blog-psychologa.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "css/pagination.css" %}" type="text/css">
 {% endblock %}
 
 {% block title %}
-Блог психолога
+    Блог психолога
 {% endblock %}
 
 {% block content %}
@@ -16,20 +17,41 @@
         {% if post.author|stringformat:"s" == "Психолог" %}
             <div class="news">
                 <div class="img-box"><a href="{% url 'post-psychologa' post.slug%}"><img class="img" src="/media/{{ post.img }}"></a></div>
-                     <div class="text">
-                         <div style="display: flex; margin-bottom: 15px">
-                             <img src="/static/ico/user.svg" style="width: 35px; margin-right: 10px">
-                             <div class="creator">
-                                 <p>Психолог</p>
-                                 <p>{{ post.post_date }}</p>
-                             </div>
-                         </div>
-                         <a style="text-decoration: none; color: #0E2231" href="{% url 'post-psychologa' post.slug%}">
-                            <h4 class="post-title">{{ post.title }}</h4>
-                            <p>{{ post.short_post }}</p>
-                        </a>
-                     </div>
+                <div class="text">
+                    <div style="display: flex; margin-bottom: 15px">
+                        <img src="/static/ico/user.svg" style="width: 35px; margin-right: 10px">
+                        <div class="creator">
+                            <p>Психолог</p>
+                            <p>{{ post.post_date }}</p>
+                        </div>
+                    </div>
+                    <a style="text-decoration: none; color: #0E2231" href="{% url 'post-psychologa' post.slug%}">
+                        <h4 class="post-title">{{ post.title }}</h4>
+                        <p>{{ post.short_post }}</p>
+                    </a>
+                </div>
             </div>
         {% endif %}
     {% endfor %}
+    {% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="{% url 'blog-psychologa' %}?page={{ page_obj.previous_page_number }}"><li><p>&laquo;</p></li></a>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                    <li class="active"><span>{{ i }}</span></li>
+                {% else %}
+                    <a href="{% url 'blog-psychologa' %}?page={{ i }}"><li><p>{{ i }}</p></li></a>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <a href="{% url 'blog-psychologa' %}?page={{ page_obj.next_page_number }}"><li><p>&raquo;</p></li></a>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
 {% endblock %}

@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% load update_value %}
 
 {% block static %}
     <link rel="stylesheet" href="{% static "css/finance.css" %}" type="text/css">
@@ -16,42 +15,30 @@
     <div class="slider-container slider">
         {% for finance in object_list %}
             {% if forloop.first %}
-            <a href=""><div class="choice-year">
+                <a href="{% url 'finance-details' finance.slug %}"><div class="choice-year">
             {% else %}
-            <a href="{% url 'finance-details' finance.year%}"><div class="year">
+                <a href="{% url 'finance-details' finance.slug%}"><div class="year">
             {% endif %}
             <p>{{ finance.year}} рік</p></div></a>
         {% endfor %}
     </div>
 
-    {#TODO something#}
-    <!-- Тут жесть -->
     {% for finance in object_list|slice:":1" %}
         {% if finance.koshtorys %}
             <div class="title-document"><p>Кошторис</p></div>
-            <div class="document-phone"><a href="../media/{{ finance.koshtorys }}" download>Завантажити документ<img SRC="/static/img/pdf.svg"></a></div>
+            <div class="document-phone"><a href="../media/{{ finance.koshtorys }}" download>Завантажити документ<img src="/static/img/pdf.svg"></a></div>
             <div class="document">
                 <embed src="../media/{{ finance.koshtorys }}" type="application/pdf" width="55%" height="1000"/>
             </div>
         {% endif %}
 
-        {% if FinanceFiles %}
-            {% with True as flag%}
-                {% for financ_zvit in FinanceFiles %}
-                    {% if financ_zvit.Finance.year|stringformat:"s" == finance.year|stringformat:"s"%}
-                        {% if flag %}
-                            <div class="title-document"><p>Інформація щодо</p>
-                            <div class="phone-sub-title"><p style="font-size: 20px;line-height: 24px;">придбаних товарів, виконаних робіт, послуг за рахунок загального бюджету </p></div>
-
-                            {% update_value False as flag %}
-                        {% endif %}
-                        <div class="document-phone"><a href="../media/{{ financ_zvit.financ_zvit }}" download>Завантажити документ<img SRC="/static/img/pdf.svg"></a></div>
-                        <div class="document">
-                            <embed src="../media/{{ financ_zvit.financ_zvit}}" type="application/pdf" width="55%" height="1000"/>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            {% endwith %}
+        {% if FinanceZvit %}
+                <div class="title-document"><p>Інформація щодо</p>
+                <div class="phone-sub-title"><p style="font-size: 20px;line-height: 24px;">придбаних товарів, виконаних робіт, послуг за рахунок загального бюджету </p></div>
+                <div class="document-phone"><a href="../media/{{ FinanceZvit.financ_zvit }}" download>Завантажити документ<img SRC="/static/img/pdf.svg"></a></div>
+                <div class="document">
+                    <embed src="../media/{{ FinanceZvit.financ_zvit}}" type="application/pdf" width="55%" height="1000"/>
+                </div>
         {% endif %}
     {% endfor %}
 
