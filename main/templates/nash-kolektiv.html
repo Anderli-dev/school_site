@@ -16,7 +16,7 @@
 
         <img class="title-img" src="/static/img/administration.png"><h2 class="sub-title">Адміністрація</h2>
         <div class="employees">
-            {% for Administration in Employees reversed %}
+            {% for Administration in Employees %}
                 {% if Administration.type|stringformat:'s' == 'Адміністрація' %}
                     <div class="employees-block" >
                         <div class="img"><img style="width: 200px" src="../media/{{ Administration.photo }}" alt="{{ Administration.name }} {{ Administration.surname }}"></div>

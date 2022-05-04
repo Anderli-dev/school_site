@@ -27,6 +27,12 @@ class TextArea(forms.ModelForm):
         allow_empty_file=True,
     )
 
+    def clean(self):
+        cleaned_data = super(TextArea, self).clean()
+        document = cleaned_data['document']
+        if str(document).split(".")[-1:][0] != "pdf" and str(document).split(".")[1:][0] != "":
+            raise forms.ValidationError("Файл не в PDF форматі")
+
     class Meta:
         model = EnterSchool
         fields = "__all__"

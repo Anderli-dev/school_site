@@ -63,7 +63,6 @@ class EmployeesType(models.Model):
 
 
 class Employees(OrderedModel):
-
     name = models.CharField("Ім'я", max_length=50)
     surname = models.CharField("Прізвище", max_length=50)
     po_batkovi = models.CharField("По-батькові", max_length=50)

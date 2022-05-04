@@ -28,4 +28,5 @@ urlpatterns = [
     path('protidiya-bulingu', BullyingView.as_view(), name='bullying'),
     path('protidiya-bulingu/<slug:slug>', BullyingDetailView.as_view(), name='bullying-detail'),
     path('<slug:slug>', InfoPageView.as_view(), name='info-page'),
+    # TODO create  page for distance study
 ]

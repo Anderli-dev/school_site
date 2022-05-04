@@ -29,7 +29,10 @@ def index(request):
 
 class JoinUsView(View):
     def get(self, request):
-        return render(request, 'join.html', context={"data": EnterSchool.objects.get(pk=1)})
+        if EnterSchool.objects.filter(pk=1):
+            return render(request, 'join.html', context={"data": EnterSchool.objects.get(pk=1)})
+        else:
+            return render(request, 'join.html')
 
 
 class DocumentPageView(DetailView):
@@ -121,7 +124,7 @@ class InfoPageView(DetailView):
 
 
 class EnterPageView(View):
-    template_name = 'admin/join-document.html'
+    template_name = 'admin/join-us-page.html'
     model = EnterSchool
 
     def dispatch(self, *args, **kwargs):
@@ -132,7 +135,11 @@ class EnterPageView(View):
 
     def get(self, request):
         form = TextArea()
-        return render(request, self.template_name, {"form": form})
+        if EnterSchool.objects.filter(pk=1):
+            document = EnterSchool.objects.get(pk=1).document
+            return render(request, self.template_name, {"form": form, "document": document})
+        else:
+            return render(request, self.template_name, {"form": form})
 
     def post(self, request):
         form = TextArea(request.POST, request.FILES)
@@ -153,11 +160,12 @@ class EnterPageView(View):
                 if request.FILES:
                     EnterSchool.objects.filter(pk=1).update(document=request.FILES["document"])
             return redirect("admin:index")
-
+        else:
+            print(form.errors)
         return render(request, self.template_name, {"form": form})
 
     def delete(self, request):
         page = EnterSchool.objects.get(pk=1)
         page.document = None
         page.save()
-        return render(request, self.template_name)
+        return redirect("admin:index")

@@ -1,0 +1,29 @@
+.form-div{
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+}
+
+.label{
+    font-weight: bold;
+    float: left;
+    width: 160px;
+    padding: 4px 10px 0 0;
+}
+
+#del-btn{
+    margin-top: -162px;
+    margin-left: 286px;
+    display: flex;
+    height: 10px;
+    line-height: 1px;
+}
+
+.submit-row{
+    padding: 12px 14px;
+    margin: 20px 0 20px;
+    background: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    text-align: right;
+    overflow: hidden;
+}
