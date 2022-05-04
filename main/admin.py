@@ -1,11 +1,29 @@
 from django.contrib import admin
+from django.urls import path
 from ordered_model.admin import OrderedModelAdmin
 
 from .admin_forms import *
 from .models import *
+from .views import EnterPageView
 
 admin.site.site_title = 'Адміністрування сайту НВК "Турбота"'
 admin.site.site_header = 'Адміністрування сайту НВК "Турбота"'
+
+
+_admin_site_get_urls = admin.site.get_urls
+
+
+def get_urls():
+    urls = _admin_site_get_urls()
+    urls += [
+            path('main/join-document', admin.site.admin_view(EnterPageView.as_view()), name="enter-page"),
+        ]
+    return urls
+
+
+admin.site.get_urls = get_urls
+# admin.autodiscover()
+# admin.site.enable_nav_sidebar = True
 
 
 class DocumentFilesAdmin(admin.StackedInline):

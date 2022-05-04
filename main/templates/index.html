@@ -53,32 +53,15 @@
         </div>
 
         <div class="employees-block employee-slider">
-
             {% for employee in employees %}
                 <div class="employee">
-                    <img class="employees-img" src="/media/{{ employee.photo }}" width="200px">
+                    <div class="img-employees">
+                        <img class="employees-img" src="/media/{{ employee.photo }}" width="200px">
+                    </div>
                     <img class="employee-vector" src="/static/img/employees-bg-img/Vector.png">
                     <div class="employees-info"><h4>{{ employee.surname }} {{ employee.name }} {{ employee.po_batkovi }}</h4><p style="padding-left: 6px">{{ employee.position }}</p></div>
                 </div>
             {% endfor %}
-
-{#            <div class="employee">#}
-{#                <img class="employees-img" src="/static/img/zastupnik-directora.png">#}
-{#                <img class="employee-vector" src="/static/img/employees-bg-img/Vector%20(1).png">#}
-{#                <div class="employees-info"><h4>Куделя Людмила Миколаївна</h4><p>Заступник директора з  навчально–виховної роботи</p></div>#}
-{#            </div>#}
-{##}
-{#            <div class="employee">#}
-{#                <img class="employees-img" src="/static/img/zastupnik-directora2.png">#}
-{#                <img class="employee-vector" src="/static/img/employees-bg-img/Vector%20(2).png">#}
-{#                <div class="employees-info"><h4>Раченко Любов Юхимівна</h4><p>Заступник директора з господарської роботи</p></div>#}
-{#            </div>#}
-{##}
-{#            <div class="employee">#}
-{#                <img class="employees-img" src="/static/img/учитель_початкових1.png" width="200px">#}
-{#                <img class="employee-vector" src="/static/img/employees-bg-img/Vector%20(3).png">#}
-{#                <div class="employees-info"><h4>Драгель Оксана Петрівна</h4><p>Учитель початкових класів</p></div>#}
-{#            </div>#}
         </div>
 
         <div style="text-align: center">

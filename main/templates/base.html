@@ -28,8 +28,7 @@
         </div>
 
         <div >
-            <a class="ico" href="{% url 'home' %}" type="image/png"><img alt="main ico" width="50px" src="../../static/ico/main-ico%201.svg"/></a>
-
+            <a class="ico" href="{% url 'home' %}" type="image/png"><img alt="main ico" width="50px" src="../../static/ico/main-ico.svg"/></a>
             <div class="nav-bar">
                 <ul>
                     <a href="{% url 'join' %}"><li class="header-nav"><p>Вступ до школи</p></li></a>
@@ -103,7 +102,7 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="school-info-footer">
-                <a class="ico-footer" href="{% url 'home' %}"><img alt="main ico" width="50px" src="../../static/ico/main-ico%201.svg"/></a>
+                <a class="ico-footer" href="{% url 'home' %}"><img alt="main ico" width="50px" src="../../static/ico/main-ico.svg"/></a>
                 <p class="text-footer">Навчально-виховний комплекс<br> “Турбота”</p>
                 <p class="text-footer"><a href="https://goo.gl/maps/kNQ3CoktxwLZ9Feh8" class="text-footer" style="padding-left: 0px">Україна, м. Київ, вулиця Героїв Дніпра, 38А</a></p>
             </div>
@@ -119,7 +118,7 @@
                         <li><a href="tel:0444112254"><p><img class="footer-phone" src="/static/img/phone-footer.png">Приймальна комісія
                             <br>044 411-22-54</p></a></li>
                         <li><a href="mailto: obolon_turbota@i.ua"><img class="footer-mail" src="/static/ico/mail.png"><p>obolon_turbota@i.ua</p></a></li>
-                        <li class="to-admin"><a href="/admin"><div><img src="/static/img/login-128.ico"></div><p>Увійти</p></a></li>
+                        <li class="to-admin"><a href="{% url "admin:index" %}"><div><img src="/static/img/login-128.ico"></div><p>Увійти</p></a></li>
                     </ul>
                 </div>
             </div>

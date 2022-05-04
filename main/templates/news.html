@@ -25,6 +25,7 @@
                     </div>
                 </div>
                 <a style="text-decoration: none; color: #0E2231" href="{% url 'news-detail' post.slug%}">
+{#                    TODO limit size of images#}
                     <h4 class="post-title">{{ post.title }}</h4>
                     <p>{{ post.short_post }}</p>
                 </a>

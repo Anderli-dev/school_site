@@ -1,10 +1,13 @@
-from itertools import chain
 from datetime import datetime
+from itertools import chain
 
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.core.exceptions import ValidationError
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView, View
 
+from .forms import TextArea
 from .models import (Document,
+                     DocumentFiles,
                      Employees,
                      Vacancy,
                      Finance,
@@ -12,7 +15,7 @@ from .models import (Document,
                      BlogPsychologa,
                      News,
                      Bullying,
-                     InfoPage,
+                     InfoPage, EnterSchool,
                      )
 
 
@@ -24,14 +27,19 @@ def index(request):
     return render(request, 'index.html', context={"employees": employees})
 
 
-class JoinUsView(ListView):
-    model = Document
-    template_name = 'join.html'
+class JoinUsView(View):
+    def get(self, request):
+        return render(request, 'join.html', context={"data": EnterSchool.objects.get(pk=1)})
 
 
 class DocumentPageView(DetailView):
     model = Document
     template_name = 'document-page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DocumentPageView, self).get_context_data(**kwargs)
+        context['document_files'] = DocumentFiles.objects.all()
+        return context
 
 
 class EmployeesView(ListView):
@@ -49,10 +57,14 @@ class EmployeesView(ListView):
 class FinanceView(ListView):
     model = Finance
     template_name = 'finance.html'
+    ordering = ['-year']
 
     def get_context_data(self, **kwargs):
         context = super(FinanceView, self).get_context_data(**kwargs)
-        context['FinanceZvit'] = FinanceFiles.objects.get(Finance=Finance.objects.get(year=datetime.now().year))
+        try:
+            context['FinanceZvit'] = FinanceFiles.objects.get(Finance=Finance.objects.get(year=datetime.now().year))
+        except Finance.DoesNotExist:
+            context['FinanceZvit'] = False
         return context
 
 
@@ -63,7 +75,7 @@ class FinanceDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(FinanceDetailView, self).get_context_data(**kwargs)
         context['FinanceZvit'] = FinanceFiles.objects.get(Finance=self.object)
-        context['FinancesYear'] = Finance.objects.only("year")
+        context['FinancesYear'] = Finance.objects.only("year").order_by("-year")
         return context
 
 
@@ -106,3 +118,46 @@ class BullyingDetailView(DetailView):
 class InfoPageView(DetailView):
     model = InfoPage
     template_name = 'info-page.html'
+
+
+class EnterPageView(View):
+    template_name = 'admin/join-document.html'
+    model = EnterSchool
+
+    def dispatch(self, *args, **kwargs):
+        method = self.request.POST.get('_method', '').lower()
+        if method == 'delete':
+            return self.delete(*args, **kwargs)
+        return super(EnterPageView, self).dispatch(*args, **kwargs)
+
+    def get(self, request):
+        form = TextArea()
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request):
+        form = TextArea(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.data
+            # -- something wierd O_O --
+            # this try except catch situation
+            # when object more than one
+            try:
+                # this code below do if not exist
+                if request.FILES:
+                    EnterSchool.objects.create(content=data["content"], document=request.FILES["document"])
+                else:
+                    EnterSchool.objects.create(content=data["content"])
+            except ValidationError:
+                # this code if object exist
+                EnterSchool.objects.filter(pk=1).update(content=data["content"])
+                if request.FILES:
+                    EnterSchool.objects.filter(pk=1).update(document=request.FILES["document"])
+            return redirect("admin:index")
+
+        return render(request, self.template_name, {"form": form})
+
+    def delete(self, request):
+        page = EnterSchool.objects.get(pk=1)
+        page.document = None
+        page.save()
+        return render(request, self.template_name)

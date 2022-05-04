@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+{% block title %}Сторінка вступу до школи | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static '/css/admin/admin.css'%}">
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Адміністрування сайту НВК "Турбота"') }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+{% block content %}
+    <h1>Сторінка вступу до школи</h1>
+    <form action="{% url "admin:enter-page" %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+{#    TODO change наразі на докуент#}
+        {% for element in form%}
+            <div {% if forloop.counter == 2 %}id="file"{% endif %}>
+                {{ element }}
+            </div>
+        {% endfor %}
+        <input type="submit"/>
+    </form>
+    <form action="{% url "admin:enter-page" %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="_method" value="delete">
+        <input class="del-btn" type="submit" value="Delete">
+    </form>
+    <script type="text/javascript">
+        form = document.getElementById("file");
+        form.children[0].href = "/media/files/"+form.children[0].innerText
+        form.children[0].target = "_blank"
+    </script>
+{% endblock %}

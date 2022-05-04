@@ -1,4 +1,6 @@
+from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
 from ordered_model.models import OrderedModel
@@ -119,7 +121,7 @@ class FinanceFiles(models.Model):
 
     Finance = models.ForeignKey(Finance, default=None, on_delete=models.CASCADE)
 
-    financ_zvit = models.FileField("PDF-файл", upload_to="files", blank=False)
+    financ_zvit = models.FileField("PDF-файл", upload_to="files", blank=True, null=True)
 
     objects = models.Manager()
 
@@ -223,3 +225,13 @@ class InfoPage(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class EnterSchool(models.Model):
+    content = RichTextField()
+    document = models.FileField("PDF-файл", upload_to="files", blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.pk and EnterSchool.objects.exists():
+            raise ValidationError('There is can be only one page')
+        return super(EnterSchool, self).save(*args, **kwargs)
