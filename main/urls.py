@@ -12,6 +12,7 @@ from main.views import (DocumentPageView,
                         BullyingDetailView,
                         JoinUsView,
                         InfoPageView,
+                        DistanceLessonsView,
                         )
 
 urlpatterns = [
@@ -27,6 +28,6 @@ urlpatterns = [
     path('blog-psychologa/<slug:slug>', BlogPsychologaDetailView.as_view(), name='post-psychologa'),
     path('protidiya-bulingu', BullyingView.as_view(), name='bullying'),
     path('protidiya-bulingu/<slug:slug>', BullyingDetailView.as_view(), name='bullying-detail'),
+    path('rozklad-dystantsiynykh-urokiv', DistanceLessonsView.as_view(), name='rozklad-dystantsiynykh-urokiv'),
     path('<slug:slug>', InfoPageView.as_view(), name='info-page'),
-    # TODO create  page for distance study
 ]

@@ -1,0 +1,57 @@
+.title{
+    padding-top: 45px;
+    margin-bottom: 109px;
+
+    text-align: center;
+}
+
+.title p{
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 72px;
+    display: inline;
+
+    padding-bottom: 16px;
+    border-bottom: 1px solid #88D9E4;
+}
+
+.files-block{
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 0 50px 0;
+    width: 100%;
+}
+
+.files-block a{
+    color: inherit;
+    text-decoration: none;
+}
+
+.files-block a:nth-child(even){
+    background: #f3f3f3;
+}
+
+.files-block a:hover{
+    background: #eaeaea;
+}
+
+.file{
+    height: 300px;
+    padding: 20px;
+}
+
+.file img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80px;
+    height: 166px;
+}
+
+.file p{
+    display: block;
+    text-align: center;
+}

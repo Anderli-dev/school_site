@@ -15,7 +15,7 @@ from .models import (Document,
                      BlogPsychologa,
                      News,
                      Bullying,
-                     InfoPage, EnterSchool,
+                     InfoPage, EnterSchool, DistanceLessons,
                      )
 
 
@@ -169,3 +169,8 @@ class EnterPageView(View):
         page.document = None
         page.save()
         return redirect("admin:index")
+
+
+class DistanceLessonsView(ListView):
+    model = DistanceLessons
+    template_name = "distance-lessons.html"

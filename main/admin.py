@@ -85,3 +85,8 @@ admin.site.register(Vacancy)
 class BullyingAdmin(admin.ModelAdmin):
     form = InfoPageForm
     exclude = ["slug"]
+
+
+@admin.register(DistanceLessons)
+class DistanceLessons(OrderedModelAdmin):
+    list_display = ('name', 'move_up_down_links')

@@ -234,3 +234,16 @@ class EnterSchool(models.Model):
         if not self.pk and EnterSchool.objects.exists():
             raise ValidationError('There is can be only one page')
         return super(EnterSchool, self).save(*args, **kwargs)
+
+
+class DistanceLessons(OrderedModel):
+    name = models.CharField("Назва", max_length=100)
+    document = models.FileField("PDF-файл", upload_to="files", blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Розклад дистанційних уроків'
+        verbose_name_plural = 'Розклади дистанційних уроків'
+        ordering = ("order",)
+
+    def __str__(self):
+        return self.name

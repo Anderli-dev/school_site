@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block static %}
+        <link rel="stylesheet" href="{% static "css/distance-lessons.css" %}" type="text/css">
+{% endblock %}
+
+{% block title %}
+Розклад дистанційних уроків
+{% endblock %}
+
+{% block content %}
+    <div class="title"><p>Розклад дистанційних уроків</p></div>
+    <div class="files-block">
+        {% for object in object_list  %}
+            <a href="/media/{{ object.document }}" download>
+                <div class="file">
+                    <img src="{% static "ico/pdf_ico.svg" %}" alt="">
+                    <p>{{ object.name }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

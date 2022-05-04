@@ -71,10 +71,12 @@
                             </ul>
                         </div>
                     </li>
+                    {# TODO add or #}
                     {% if Pages or documents %}
                         <li class="header-wth-sub-nav"><p><nobr>Дистанційне навчання</nobr></p>
                             <div class="sub-nav-bar">
                                 <ul>
+                                    <li><a href="{% url 'rozklad-dystantsiynykh-urokiv' %}">Розклад дистанційних уроків</a></li>
                                     {% for page in Pages %}
                                         {% if page.tab|stringformat:'s' == 'Дистанційне навчання' %}
                                             <li><a href="{% url 'info-page' page.slug%}">{{ page.title }}</a></li>

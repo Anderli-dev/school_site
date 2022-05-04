@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="title"><p>{{ object.name }}</p>
+    <div class="title"><p>{{ object.name }}</p></div>
     <div class="document">
         {% for pdf in document_files %}
             {% if object.name == pdf.Document.name %}
