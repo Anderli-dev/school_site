@@ -23,15 +23,16 @@
         {{ form.non_field_errors }}
         {{ form.media }}
 
-        {% for element in form%}
-            {% if forloop.counter == 2 %}
-                <p class="label" style="height: 40px">Документ:</p>
-            {% endif %}
-            <div class="form-div" {% if forloop.counter == 2 %}id="file"{% endif %}>
-                {{ element.error }}
-                {{ element }}
-            </div>
-        {% endfor %}
+        {{ form.content.error }}
+        <div class="form-div">
+            {{ form.content }}
+        </div>
+        {#TODO some refactor#}
+        <p class="label" style="height: 40px">Документ:</p>
+        <div class="form-div" id="file">
+            {{ form.document.error }}
+            {{ form.document }}
+        </div>
 
         <div class="submit-row">
             <input type="submit" value="Зберегти"/>

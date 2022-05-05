@@ -22,8 +22,8 @@ def get_urls():
 
 
 admin.site.get_urls = get_urls
-# admin.autodiscover()
-# admin.site.enable_nav_sidebar = True
+admin.autodiscover()
+admin.site.enable_nav_sidebar = False
 
 
 class DocumentFilesAdmin(admin.StackedInline):

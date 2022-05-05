@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load static %}
 
 {% if app_list %}
   {% for app in app_list|slice:"1:" %}
@@ -8,34 +9,60 @@
           <a href="" class="section" title="{% blocktranslate with name=app.name %}Models in the {{ name }} application{% endblocktranslate %}">{{ app.name }}</a href="">
         </caption>
         {% for model in app.models %}
-          <tr class="model-{{ model.object_name|lower }}{% if model.admin_url in request.path %} current-model{% endif %}">
-            {% if model.admin_url %}
-              <th scope="row"><a href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>{{ model.name }}</a></th>
-            {% else %}
-              <th scope="row">{{ model.name }}</th>
-            {% endif %}
-
-            {% if model.add_url %}
-              <td><a href="{{ model.add_url }}" class="addlink">{% translate 'Add' %}</a></td>
-            {% else %}
-              <td></td>
-            {% endif %}
-
-            {% if model.admin_url and show_changelinks %}
-              {% if model.view_only %}
-                <td><a href="{{ model.admin_url }}" class="viewlink">{% translate 'View' %}</a></td>
-              {% else %}
-                <td><a href="{{ model.admin_url }}" class="changelink">{% translate 'Change' %}</a></td>
-              {% endif %}
-            {% elif show_changelinks %}
-              <td></td>
-            {% endif %}
-          </tr>
+            <tr class="model-{{ model.object_name|lower }}{% if model.admin_url in request.path %} current-model{% endif %}">
+                {% if model.admin_url %}
+                    <th scope="row">
+                        {% if forloop.counter == 1 %}
+                            <a class="img-model" href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>
+                                <img src="{% static "ico/blog-solid.svg" %}" alt="" width="70px" height="100%" >
+                            </a>
+                        {% elif forloop.counter == 2%}
+                            <a class="img-model" href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>
+                                <img src="{% static "ico/clipboard-regular.svg" %}" alt="" width="70px" height="100%" >
+                            </a>
+                        {% elif forloop.counter == 3%}
+                            <a class="img-model" href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>
+                                <img src="{% static "ico/money-bills-solid.svg" %}" alt="" width="70px" height="100%" >
+                            </a>
+                        {% elif forloop.counter == 4%}
+                                <a class="img-model" href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>
+                                    <img src="{% static "ico/file-pdf-solid.svg" %}" alt="" width="70px" height="100%" >
+                                </a>
+                        {% elif forloop.counter == 5%}
+                            <a class="img-model" href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>
+                                <img src="{% static "ico/newspaper-solid.svg" %}" alt="" width="70px" height="100%" >
+                            </a>
+                        {% elif forloop.counter == 6%}
+                            <a class="img-model" href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>
+                                <img src="{% static "ico/hands-holding-child-solid.svg" %}" alt="" width="70px" height="100%" >
+                            </a>
+                        {% elif forloop.counter == 7%}
+                        <a class="img-model" href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>
+                            <img src="{% static "ico/calendar-days-solid.svg" %}" alt="" width="70px" height="100%" >
+                        </a>
+                        {% elif forloop.counter == 8%}
+                        <a class="img-model" href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>
+                            <img src="{% static "ico/users-solid.svg" %}" alt="" width="70px" height="100%" >
+                        </a>
+                        {% elif forloop.counter == 9%}
+                        <a class="img-model" href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>
+                            <img src="{% static "ico/file-lines-solid.svg" %}" alt="" width="70px" height="100%" >
+                        </a>
+                        {% endif %}
+                        <a class="a-model" href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>{{ model.name }}</a>
+                    </th>
+                {% else %}
+                    <th scope="row">{{ model.name }}</th>
+                {% endif %}
+            </tr>
         {% endfor %}
           <tr class="model-{{ model.object_name|lower }}{% if model.admin_url in request.path %} current-model{% endif %}">
-              <th scope="row"><a href="{% url "admin:enter-page" %}">Сторінка "Вступ до школи"</a></th>
-              <td></td>
-              <td></td>
+              <th scope="row">
+                  <a class="img-model" href="{% url "admin:enter-page" %}">
+                            <img src="{% static "ico/person-circle-plus-solid.svg" %}" alt="" width="70px" height="100%" >
+                  </a>
+                  <a href="{% url "admin:enter-page" %}">Сторінка "Вступ до школи"</a>
+              </th>
           </tr>
       </table>
     </div>
