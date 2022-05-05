@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     'main',
     'django_cleanup.apps.CleanupConfig',
     'ordered_model',
-    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
