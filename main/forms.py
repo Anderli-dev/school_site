@@ -11,7 +11,7 @@ class MyClearableFileInput(ClearableFileInput):
 
 class TextArea(forms.ModelForm):
 
-    if EnterSchool.objects.filter(pk=1).exists():
+    if EnterSchool:
         def __init__(self, *args, **kwargs):
             super(TextArea, self).__init__(*args, **kwargs)
             self.fields['content'].initial = EnterSchool.objects.get(pk=1).content
