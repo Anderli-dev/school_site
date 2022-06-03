@@ -222,16 +222,17 @@
 }
 
 .img-employees{
-    max-height:220px;
-    max-width: 200px;
-    overflow: hidden;
+  max-height:215px;
+  max-width: 200px;
+  overflow: hidden;
+  border-radius: 24px;
+
+  margin-top: 24px;
+  margin-left: 34px;
+
 }
 
 .employees-img{
-  position: absolute;
-
-  margin-top: 15px;
-  margin-left: 25px;
   z-index: 1;
 }
 
@@ -334,7 +335,7 @@
   float: right;
   width: 50px;
   height: 50px;
-  margin-top: -487px;
+  margin-top: -492px;
 
   background-color: #A9E0F1;
   border: 0px;

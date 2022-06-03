@@ -35,7 +35,9 @@
             {% for Teacher in Employees %}
                 {% if Teacher.type|stringformat:'s' == 'Вчителі' %}
                     <div class="employees-block">
-                        <div class="img"><img style="width: 200px" src="../media/{{ Teacher.photo }}" alt="{{ Teacher.name }} {{ Teacher.surname }}"></div>
+                        <div class="img">
+                            <img style="width: 200px" src="../media/{{ Teacher.photo }}" alt="{{ Teacher.name }} {{ Teacher.surname }}">
+                        </div>
                         <div style="margin-top: 40px;">
                             <p class="name"><strong>{{ Teacher.surname }} {{ Teacher.name }} {{ Teacher.po_batkovi }} </strong></p>
                             <p class="position">{{ Teacher.position }}</p>

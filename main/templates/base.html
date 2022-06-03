@@ -28,7 +28,14 @@
         </div>
 
         <div >
-            <a class="ico" href="{% url 'home' %}" type="image/png"><img alt="main ico" width="50px" src="../../static/ico/main-ico.svg"/></a>
+            <a class="ico"
+               {% if DistancePages or DistanceDocuments or DistanceLessons%}
+               style="margin-top: 7px"
+               {% endif %}
+               href="{% url 'home' %}"
+               type="image/png">
+                <img alt="main ico" width="50px" src="../../static/ico/main-ico.svg"/>
+            </a>
             <div class="nav-bar">
                 <ul>
                     <a href="{% url 'join' %}"><li class="header-nav"><p>Вступ до школи</p></li></a>

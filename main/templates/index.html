@@ -54,10 +54,13 @@
         <div class="employees-block employee-slider">
             {% for employee in employees %}
                 <div class="employee">
+                    <img class="employee-vector"
+                         src="/static/img/employees-bg-img/Vector.png"
+                         style="z-index: -100;
+                                position: absolute;">
                     <div class="img-employees">
-                        <img class="employees-img" src="/media/{{ employee.photo }}" width="200px">
+                        <img style="width: 200px" class="employees-img" src="/media/{{ employee.photo }}" width="200px">
                     </div>
-                    <img class="employee-vector" src="/static/img/employees-bg-img/Vector.png">
                     <div class="employees-info"><h4>{{ employee.surname }} {{ employee.name }} {{ employee.po_batkovi }}</h4><p style="padding-left: 6px">{{ employee.position }}</p></div>
                 </div>
             {% endfor %}
