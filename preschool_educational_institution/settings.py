@@ -143,8 +143,8 @@ SESSION_COOKIE_SAMESITE = 'None'
 # CKeditor settings
 CKEDITOR_CONFIGS = {
     'default': {
-        #'skin': 'moono',
-        'skin': 'office2013',
+        'skin': 'moono-lisa',
+        #'skin': 'office2013',
         'toolbar_Basic': [
             ['Source', '-', 'Bold', 'Italic']
         ],
