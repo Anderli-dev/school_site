@@ -11,7 +11,7 @@
         {% for model in app.models %}
             <tr class="model-{{ model.object_name|lower }}{% if model.admin_url in request.path %} current-model{% endif %}">
                 {% if model.admin_url %}
-                    <th scope="row">
+                    <th scope="row" style="width: 100%">
                         {% if forloop.counter == 1 %}
                             <a class="img-model" href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>
                                 <img src="{% static "ico/blog-solid.svg" %}" alt="" width="70px" height="100%" >
@@ -52,16 +52,16 @@
                         <a class="a-model" href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>{{ model.name }}</a>
                     </th>
                 {% else %}
-                    <th scope="row">{{ model.name }}</th>
+                    <th scope="row" style="width: 100%">{{ model.name }}</th>
                 {% endif %}
             </tr>
         {% endfor %}
           <tr class="model-{{ model.object_name|lower }}{% if model.admin_url in request.path %} current-model{% endif %}">
-              <th scope="row">
+              <th scope="row" style="width: 100%">
                   <a class="img-model" href="{% url "admin:enter-page" %}">
                             <img src="{% static "ico/person-circle-plus-solid.svg" %}" alt="" width="70px" height="100%" >
                   </a>
-                  <a href="{% url "admin:enter-page" %}">Сторінка "Вступ до школи"</a>
+                  <a class="a-model" href="{% url "admin:enter-page" %}">Сторінка "Вступ до школи"</a>
               </th>
           </tr>
       </table>
