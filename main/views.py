@@ -1,10 +1,13 @@
+import os
 from datetime import datetime
 from itertools import chain
 
 from django.core.exceptions import ValidationError
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, View
 
+from preschool_educational_institution import settings
 from .forms import TextArea
 from .models import (Document,
                      DocumentFiles,
@@ -150,15 +153,24 @@ class EnterPageView(View):
             # when object more than one
             try:
                 # this code below do if not exist
-                if request.FILES:
+                if request.FILES["document"]:
                     EnterSchool.objects.create(content=data["content"], document=request.FILES["document"])
+                    with open(os.path.join(settings.MEDIA_ROOT, "files"), 'rb') as fh:
+                        print(os.path.join(settings.MEDIA_ROOT, "files"))
+                        response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+                        response['Content-Disposition'] = 'inline; filename=' + os.path.basename(os.path.join(settings.MEDIA_ROOT, "/files"))
+                        return response
                 else:
+                    print("else")
                     EnterSchool.objects.create(content=data["content"])
             except ValidationError:
                 # this code if object exist
                 EnterSchool.objects.filter(pk=1).update(content=data["content"])
                 if request.FILES:
                     EnterSchool.objects.filter(pk=1).update(document=request.FILES["document"])
+                    with open(os.path.join(settings.MEDIA_ROOT, 'files', str(request.FILES["document"])), 'wb+') as destination:
+                        for chunk in request.FILES['document'].chunks():
+                            destination.write(chunk)
             return redirect("admin:index")
         else:
             print(form.errors)
