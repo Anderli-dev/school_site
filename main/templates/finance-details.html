@@ -39,11 +39,13 @@
                 <p>Інформація щодо</p>
                 <div class="phone-sub-title"><p style="font-size: 20px;line-height: 24px;">придбаних товарів, виконаних робіт, послуг за рахунок загального бюджету </p></div>
             </div>
-            <div class="document-phone"><a href="../media/{{ FinanceZvit.financ_zvit }}" download>Завантажити документ<img SRC="/static/img/pdf.svg"></a></div>
-            <div class="document">
-                <embed src="../media/{{ FinanceZvit.financ_zvit}}" type="application/pdf" width="55%" height="1000"/>
-            </div>
         {% endif %}
+        {% for Zvit in FinanceZvit %}
+            <div class="document-phone"><a href="../media/{{ Zvit.financ_zvit }}" download>Завантажити документ<img SRC="/static/img/pdf.svg"></a></div>
+            <div class="document">
+                <embed src="../media/{{ Zvit.financ_zvit}}" type="application/pdf" width="55%" height="1000"/>
+            </div>
+        {% endfor %}
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

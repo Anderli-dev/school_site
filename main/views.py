@@ -68,7 +68,7 @@ class FinanceView(ListView):
     def get_context_data(self, **kwargs):
         context = super(FinanceView, self).get_context_data(**kwargs)
         try:
-            context['FinanceZvit'] = FinanceFiles.objects.get(Finance=Finance.objects.order_by('-id').last())
+            context['FinanceZvit'] = FinanceFiles.objects.filter(Finance=Finance.objects.order_by('year').last())
         except Finance.DoesNotExist:
             context['FinanceZvit'] = False
         return context
@@ -80,7 +80,7 @@ class FinanceDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(FinanceDetailView, self).get_context_data(**kwargs)
-        context['FinanceZvit'] = FinanceFiles.objects.get(Finance=self.object)
+        context['FinanceZvit'] = FinanceFiles.objects.filter(Finance=self.object)
         context['FinancesYear'] = Finance.objects.only("year").order_by("-year")
         return context
 
