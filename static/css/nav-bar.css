@@ -1,15 +1,15 @@
 .ico{
   float: left;
   position: absolute;
-  margin-top: 0.6%;
+  margin-top: 7px;
   margin-left: 50px;
   left: 0;
   z-index: 10;
 }
 
-@media (min-width: 1024px){
+@media (max-width: 1267px){
   .ico {
-    margin-top: 5px;
+    display: none;
   }
 }
 
@@ -68,6 +68,18 @@
   margin: 1.2%;
   color: inherit;
 }
+@media (min-width: 1024px){
+  .nav-bar ul a {
+    margin: 1.2% 0.3%;
+  }
+  .nav-bar ul a li{
+    width: 189px
+  }
+  .nav-bar ul li{
+    width: 189px
+  }
+}
+
 .nav-bar ul li a {
   text-decoration: none;
   color: inherit;
@@ -86,6 +98,11 @@
 .header-wth-sub-nav {
   margin: 1.2%;
 }
+@media (max-width: 1267px){
+  .header-wth-sub-nav {
+    margin: 1.2% 0.3%;
+  }
+}
 .header-wth-sub-nav p{
   width: 163px;
 }
@@ -103,7 +120,7 @@
   display: block;
   position: absolute;
   background: #35ADD3;
-  margin-top: 10px;
+  margin-top: 9px;
   margin-left: -10px;
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
@@ -155,7 +172,7 @@
 
   .header-burger{
     display: block;
-    margin-top: 18px;
+    margin-top: 15px;
     margin-right: 12px;
     position: relative;
     width: 28px;
@@ -170,7 +187,7 @@
     position: absolute;
     width: 100%;
     height: 1px;
-    top: -7px;
+    margin-top: 9px;
     margin-left: 0;
     transition: all 0.3s ease 0s;
   }
@@ -202,7 +219,7 @@
   }
 
   .nav-bar.phone-active{
-    top: 56px;
+    top: 55px;
   }
 
   .nav-bar{
@@ -222,6 +239,7 @@
   .nav-bar ul li{
     display: block;
     margin: 9px;
+    width: 210px;
   }
   .nav-bar div.phone{
     display: none;

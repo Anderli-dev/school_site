@@ -52,5 +52,12 @@
                 listImg[i].style.height = "100%"
             }
         }
+        let videosWidth = 0
+        if(window.innerWidth < 768) {
+            let listVideo = document.getElementsByTagName('video');
+            for (let i = 0; i < listVideo.length; i++) {
+                listVideo[i].style.width = "100%"
+            }
+        }
     </script>
 {% endblock %}

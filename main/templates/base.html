@@ -30,7 +30,9 @@
         <div >
             <a class="ico"
                {% if DistancePages or DistanceDocuments or DistanceLessons%}
-               style="margin-top: 7px"
+                   {# Воно так працює не чіпай#}
+               {% else %}
+               style="margin-top: 0.3%"
                {% endif %}
                href="{% url 'home' %}"
                type="image/png">
@@ -121,10 +123,8 @@
                 <div>
                     <p class="text-info-title">Контактна інформація</p>
                     <ul class="text-info" >
-                        <li><a href="tel:0442981133"><p><img class="footer-phone" src="/static/img/phone-footer.png">Приймальня директора
-                            <br>044 298 -11-33</p></a></li>
-                        <li><a href="tel:0444112254"><p><img class="footer-phone" src="/static/img/phone-footer.png">Приймальна комісія
-                            <br>044 411-22-54</p></a></li>
+                        <li><a href="tel:0984125224"><p><img class="footer-phone" src="/static/img/phone-footer.png">098-412-52-24 (Viber)</p></a></li>
+                        <li><a href="tel:0444112254"><p><img class="footer-phone" src="/static/img/phone-footer.png">044 411-22-54</p></a></li>
                         <li><a href="mailto: obolon_turbota@i.ua"><img class="footer-mail" src="/static/ico/mail.png"><p>obolon_turbota@i.ua</p></a></li>
                         <li class="to-admin"><a href="{% url "admin:index" %}"><div><img src="/static/img/login-128.ico"></div><p>Увійти</p></a></li>
                     </ul>

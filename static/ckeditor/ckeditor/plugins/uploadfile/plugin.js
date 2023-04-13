@@ -34,7 +34,12 @@
 				},
 
 				onUploaded: function( upload ) {
-					this.replaceWith( '<a href="' + upload.url + '" target="_blank">' + upload.fileName + '</a>' );
+					// if((upload.url.match(/\.([^.]+)$|$/)[1]).toUpperCase() === 'MP4'){
+					// 	// this.replaceWith( '<a href="GG" target="_blank">' + upload.fileName + '</a>' );
+					// }
+					// else{
+						this.replaceWith( '<a href="' + upload.url +  '" target="_blank">' + upload.fileName + '</a>' );
+					// }
 				}
 			} );
 		},

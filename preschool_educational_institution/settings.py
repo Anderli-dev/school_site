@@ -164,12 +164,11 @@ CKEDITOR_CONFIGS = {
             {'name': 'links',
              'items': ['Link', 'Unlink']},
             {'name': 'insert',
-             'items': ['Image', 'Embed', '', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+             'items': ['Image', 'Html5video', 'Embed', '', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
             '/',
             {'name': 'styles', 'items': ['Styles', 'Font', 'FontSize']}, # 'Format',
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
             {'name': 'tools', 'items': ['Maximize']},
-            {'name': 'about', 'items': ['About']},
             '/',  # put this to force next toolbar on new line
             {'name': 'yourcustomtools', 'items': [
                 # put the name of your editor.ui.addButton here
@@ -191,6 +190,7 @@ CKEDITOR_CONFIGS = {
         'extraPlugins': ','.join([
             'uploadimage', # the upload image feature
             # your extra plugins here
+            'html5video',
             'uploadfile',
             'div',
             'autolink',
@@ -204,7 +204,8 @@ CKEDITOR_CONFIGS = {
             'clipboard',
             'dialog',
             'dialogui',
-            'elementspath'
+            'elementspath',
+
         ]),
     }
 }
