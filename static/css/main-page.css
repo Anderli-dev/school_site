@@ -261,8 +261,8 @@
   width: 232px;
   height: 58px;
   padding-top: 13px;
-  margin-top: 56px;
-  margin-bottom: 180px;
+  margin-top: 6px;
+  margin-bottom: 66px;
   background: white;
 
   text-align: center;
@@ -292,6 +292,7 @@
 
 .choice-text-title{
   margin-bottom: 100px;
+  margin-top: 50px;
 }
 
 .goal{
