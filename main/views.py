@@ -101,7 +101,7 @@ class NewsView(ListView):
     paginate_by = 10
     model = News
     template_name = 'news.html'
-    ordering = ['-id']
+    ordering = ['-post_date']
 
 
 class NewsDetailView(DetailView):
@@ -153,7 +153,8 @@ class EnterPageView(View):
             # when object more than one
             try:
                 # this code below do if not exist
-                if request.FILES["document"]:
+                print(request.FILES)
+                if "document" in request.FILES:
                     EnterSchool.objects.create(content=data["content"], document=request.FILES["document"])
                     with open(os.path.join(settings.MEDIA_ROOT, "files"), 'rb') as fh:
                         print(os.path.join(settings.MEDIA_ROOT, "files"))

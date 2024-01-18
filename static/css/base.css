@@ -21,13 +21,6 @@ body {
 }
 
 .footer {
-  height: 450px;
   background-color: #148BB0;
   color: aliceblue;
-}
-
-@media (max-width: 1024px) {
-  .footer {
-    height: 815px;
-  }
 }
