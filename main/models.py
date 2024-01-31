@@ -24,7 +24,7 @@ class Document(models.Model):
     slug = models.SlugField("Посилання", max_length=100, unique=True)
     tab = models.ForeignKey(SiteTab,
                             on_delete=models.SET_DEFAULT,
-                            verbose_name="Вкладка на якій буде знаходитися документ(-и)",
+                            verbose_name="Вкладинка на якій буде знаходитися документ(-и)",
                             default="Документи")
 
     objects = models.Manager()
