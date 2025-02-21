@@ -4,12 +4,15 @@
 
 
 .main-page-image{
-  background-image: url(/static/img/main-img.png);
+  background-image: url(/static/img/shape-img.png);
 
   background-position: top;
   background-repeat: no-repeat;
   background-position-x: 93%;
   background-position-y: 50%;
+
+  background-size: 677px 573px;
+  
 }
 
 .on-phone-img{

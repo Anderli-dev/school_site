@@ -3,7 +3,6 @@ from datetime import datetime
 from itertools import chain
 
 from django.core.exceptions import ValidationError
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, View
 
@@ -18,7 +17,9 @@ from .models import (Document,
                      BlogPsychologa,
                      News,
                      Bullying,
-                     InfoPage, EnterSchool, DistanceLessons,
+                     InfoPage, 
+                     EnterSchool,
+                     DistanceLessons,
                      )
 
 
@@ -153,7 +154,6 @@ class EnterPageView(View):
             # when object more than one
             try:
                 # this code below do if not exist
-                print(request.FILES)
                 if "document" in request.FILES:
                     EnterSchool.objects.create(content=data["content"], document=request.FILES["document"])
                     with open(os.path.join(settings.MEDIA_ROOT, "files"), 'rb') as fh:

@@ -28,16 +28,7 @@
         </div>
 
         <div >
-            <a class="ico"
-               {% if DistancePages or DistanceDocuments or DistanceLessons%}
-                   {# Воно так працює не чіпай#}
-               {% else %}
-               style="margin-top: 0.3%"
-               {% endif %}
-               href="{% url 'home' %}"
-               type="image/png">
-                <img alt="main ico" width="50px" src="../../static/ico/main-ico.svg"/>
-            </a>
+            <a class="ico" {% if DistancePages or DistanceDocuments or DistanceLessons%}{# Воно так працює не чіпай#}{% else %}style="margin-top: 0.3%"{% endif %} href="{% url 'home' %}" type="image/png"><img alt="main ico" width="50px" src="../../static/ico/main-ico.svg"/></a>
             <div class="nav-bar">
                 <ul>
                     <a href="{% url 'join' %}"><li class="header-nav"><p>Вступ до школи</p></li></a>
@@ -110,10 +101,10 @@
     </main>
 
     <footer class="footer">
-        <div class="footer-container" style="display: flex; justify-content: space-between">
+                <div class="footer-container" style="display: flex; justify-content: space-between">
             <div class="school-info-footer">
                 <a class="ico-footer" style="margin-top: 5px" href="{% url 'home' %}"><img alt="main ico" width="50px" src="../../static/ico/main-ico.svg"/></a>
-                <p class="text-footer">Навчально-виховний комплекс<br> “Турбота”</p>
+                <p class="text-footer">Початкова школа<br> “Турбота”</p>
                 <p class="text-footer"><a href="https://goo.gl/maps/kNQ3CoktxwLZ9Feh8" class="text-footer" style="padding-left: 0px">Україна, м. Київ, вулиця Героїв Дніпра, 38А</a></p>
                 <div class="footer-info">
                     <div>
@@ -137,7 +128,6 @@
         <a href="#" class="to-top"><img src="/static/img/arrow-to-top.png"></a>
 
         <p class="rights"> © {% now "Y" %} | All Rights Reserved</p>
-
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

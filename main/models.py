@@ -24,7 +24,7 @@ class Document(models.Model):
     slug = models.SlugField("Посилання", max_length=100, unique=True)
     tab = models.ForeignKey(SiteTab,
                             on_delete=models.SET_DEFAULT,
-                            verbose_name="Вкладинка на якій буде знаходитися документ(-и)",
+                            verbose_name="Вкладка на якій буде знаходитися документ(-и)",
                             default="Документи")
 
     objects = models.Manager()
@@ -63,6 +63,7 @@ class EmployeesType(models.Model):
 
 
 class Employees(OrderedModel):
+    # TODO load img of arrow on site
     name = models.CharField("Ім'я", max_length=50)
     surname = models.CharField("Прізвище", max_length=50)
     po_batkovi = models.CharField("По-батькові", max_length=50)
@@ -247,3 +248,4 @@ class DistanceLessons(OrderedModel):
 
     def __str__(self):
         return self.name
+        

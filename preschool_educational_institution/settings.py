@@ -77,10 +77,6 @@ DATABASES = {
     }
 }
 
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -143,8 +139,8 @@ SESSION_COOKIE_SAMESITE = 'None'
 # CKeditor settings
 CKEDITOR_CONFIGS = {
     'default': {
-        'skin': 'moono-lisa',
-        #'skin': 'office2013',
+        #'skin': 'moono',
+        'skin': 'office2013',
         'toolbar_Basic': [
             ['Source', '-', 'Bold', 'Italic']
         ],
@@ -164,7 +160,7 @@ CKEDITOR_CONFIGS = {
             {'name': 'links',
              'items': ['Link', 'Unlink']},
             {'name': 'insert',
-             'items': ['Image', 'Html5video', 'Embed', '', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+             'items': ['Image', 'Html5video' , 'Embed', '', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
             '/',
             {'name': 'styles', 'items': ['Styles', 'Font', 'FontSize']}, # 'Format',
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
@@ -204,8 +200,7 @@ CKEDITOR_CONFIGS = {
             'clipboard',
             'dialog',
             'dialogui',
-            'elementspath',
-
+            'elementspath'
         ]),
     }
 }

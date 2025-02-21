@@ -26,14 +26,13 @@
     {% for finance in object_list|slice:":1" %}
         {% if finance.koshtorys %}
             <div class="title-document"><p>Кошторис</p></div>
-
             <div class="document-phone"><a href="../media/{{ finance.koshtorys }}" download>Завантажити документ<img src="/static/img/pdf.svg"></a></div>
-
             <div class="document">
                 <embed src="../media/{{ finance.koshtorys }}" type="application/pdf" width="55%" height="1000"/>
             </div>
         {% endif %}
-        {% if FinanceZvit %}
+
+         {% if FinanceZvit %}
             <div class="title-document">
                 <p>Інформація щодо</p>
                 <div class="phone-sub-title"><p style="font-size: 20px;line-height: 24px;">придбаних товарів, виконаних робіт, послуг за рахунок загального бюджету </p></div>

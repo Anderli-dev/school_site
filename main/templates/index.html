@@ -11,9 +11,10 @@
 {% endblock %}
 
 {% block content %}
+
     <div class="main-page-image">
         <div class="title-container">
-            <h1 class="school-name-title">Навчально-виховний комплекс “Турбота”</h1>
+            <h1 class="school-name-title">Початкова школа “Турбота”</h1>
         </div>
 
         <h3 class="motto">Кожна дитина – особистість,<br> кожна дитина - талановита</h3>
@@ -37,7 +38,7 @@
                 <h3 class="text-list-title" style="margin-top: 0px">Наш освітній процес</h3>
                 <ul class="text-list">
                     <li>Створення умов для розвитку інтелектуальної творчої особистості школяря через систему багатовекторного розвитку закладу</li>
-                    <li>вивчення двох іноземних мов (англійська та польська) з 1-го класу</li>
+                    <li>вивчення англійської інозменої мови з 1-го класу</li>
                     <li>у другій половині дня (13.00 – 18.00) функціонує група продовженого дня</li>
                 </ul>
             </div>
@@ -53,31 +54,29 @@
         <div class="employees-block employee-slider">
             {% for employee in employees %}
                 <div class="employee">
-                    <img class="employee-vector"
-                         src="/static/img/employees-bg-img/Vector.png"
-                         style="z-index: -100;
-                                position: absolute;">
                     <div class="img-employees">
-                        <img style="width: 200px" class="employees-img" src="/media/{{ employee.photo }}" width="200px">
+                        <img class="employees-img" src="/media/{{ employee.photo }}" width="200px">
                     </div>
+                    <img class="employee-vector" src="/static/img/employees-bg-img/Vector.png" style="margin-top: -265px;">
                     <div class="employees-info"><h4>{{ employee.surname }} {{ employee.name }} {{ employee.po_batkovi }}</h4><p style="padding-left: 6px">{{ employee.position }}</p></div>
                 </div>
             {% endfor %}
         </div>
 
         <div style="text-align: center">
-            <a class="employee-button" href="{% url 'nash-kolektiv' %}"><div style="display: flex; padding-left: 28px"><p>Уся команда</p><img class="employee-button-arrow" src="/static/img/Black-Arrow.png"></div></a>
+            <a class="employee-button" href="{% url 'nash-kolektiv' %}"><div style="display: flex; padding-left: 28px; padding-top: 13px;"><p>Уся команда</p><img class="employee-button-arrow" src="/static/img/Black-Arrow.png"></div></a>
         </div>
 
     </div>
 
-    <div class="process-block" style="height: 780px; margin-bottom: 0; padding-bottom: 70px; padding-top: 40px">
+   <div class="process-block" style="height: 100%;max-height: 780px; margin-bottom: 0; padding-bottom: 70px; padding-top: 40px">
         <div class="sub-title">
             <img class="employees-title-img process-title-img" style="margin-bottom: -61px" src="/static/img/day(2).png">
             <h3 style="padding-bottom: 53px">Віртуальна прогулянка школою</h3>
-            <div style="text-align: center"><video controls="controls" controlslist="nodownload" src="/static/video/20230413_093036.mp4" width="600">&nbsp;</video></div>
+            <div style="text-align: center"><video controls="controls" style="width: 100%; max-width: 600px; controlslist="nodownload" src="/static/video/ПРЕЗЕНТАЦІЯ_НВК_ТУРБОТА.mp4">&nbsp;</video></div>
         </div>
     </div>
+
 
     <div>
         <div class="choice-text-title" style="text-align: center"><div class="text-title"><h2><span>Чому обирають “Турбота”</span></h2></div></div>
@@ -149,6 +148,7 @@
                     <h4>Гаряче харчування<img src="/static/img/day(2).png"></h4>
                     <p>Наші кухарі ніколи не залишать школярів голодними.</p>
                 </div>
+
             </div>
 
             <div class="day day2">

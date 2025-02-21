@@ -8,7 +8,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path('', include('main.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]

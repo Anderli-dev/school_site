@@ -1,0 +1,66 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block title %}Редагування навігаційної панелі | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Адміністрування сайту НВК "Турбота"') }}</a></h1>
+{% endblock %}
+
+{% block extrastyle  %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin/edit-nav-page.css' %}">
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+    <h1>Редагування навігаційної панелі</h1>
+    <div style="display: inline-flex; flex-direction: column;" id="tabs">
+        {% for tab in Tabs %}
+            {% if tab.is_page and not tab.related_tab_id %}
+                <div class="nav-tab clickable-tab">
+                    <div style="display: flex">
+                        <div class="arrows-div"><div class="arrow-up"></div><div class="arrow-down"></div></div>
+                        <p>{{ tab.tab_name }}</p>
+                    </div>
+                </div>
+            {% endif %}
+            {% if not tab.is_page%}
+                <div class="nav-tab">
+                    <div style="display: flex">
+                        <div class="arrows-div"><div class="arrow-up"></div><div class="arrow-down"></div></div>
+                        <p>{{ tab.tab_name }}</p>
+                        <div class="sub-nav-tabs">
+                            <ul class="sub-tabs" style="padding: 0; top: -9px; display: flex; flex-direction: column;">
+                                {% for page in Tabs %}
+                                    {% if page.related_tab_id|stringformat:'s' == tab.tab_name %}
+                                        <li class="clickable-tab" style="display: flex; width: 100%">
+                                            <div class="arrows-div"><div class="arrow-up"></div><div class="arrow-down"></div></div>
+                                            <div class="nav-tab"><a href="">{{ page.tab_name }}</a></div>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="arrow-right" style="margin-top: 3px"></div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <script type="text/javascript" defer>
+         window.onload = function () {
+             let tabs = document.getElementById("tabs");
+             let subTabs = document.getElementsByClassName("sub-tabs");
+                 console.log(subTabs.length)
+
+             for(let i = 0; i<subTabs.length; i++){
+                 console.log("xd")
+                subTabs[i].style.right = -tabs.offsetWidth+"px"
+             }
+         }
+    </script>
+
+{% endblock %}
